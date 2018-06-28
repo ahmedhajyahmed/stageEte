@@ -4,7 +4,8 @@
     "type": "project",
     "autoload": {
         "psr-4": {
-            "AppBundle\\": "src/AppBundle"
+            "AppBundle\\": "src/AppBundle",
+            "ILANEO\\CongeBundle\\": "src/ILANEO/CongeBundle" //ceci a été ajouté (execute ensuite php composer.phar dump-autoload)
         },
         "classmap": [
             "app/AppKernel.php",

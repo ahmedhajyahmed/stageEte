@@ -1,0 +1,3 @@
+ilaneo_conge_homepage:
+    path:     /
+    defaults: { _controller: ILANEOCongeBundle:Default:index }
