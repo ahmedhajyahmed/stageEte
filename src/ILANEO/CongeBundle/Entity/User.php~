@@ -122,7 +122,6 @@ class User extends BaseUser
     public function __construct()
     {
         parent::__construct();
-        $this->paidVacation=0;
         // your own logic
     }
 
@@ -447,28 +446,5 @@ class User extends BaseUser
     {
         return $this->bankAccount;
     }
-
-    /**
-     * Set paidVacation
-     *
-     * @param integer $paidVacation
-     *
-     * @return User
-     */
-    public function setPaidVacation($paidVacation)
-    {
-        $this->paidVacation = $paidVacation;
-
-        return $this;
-    }
-
-    /**
-     * Get paidVacation
-     *
-     * @return integer
-     */
-    public function getPaidVacation()
-    {
-        return $this->paidVacation;
-    }
 }
+
