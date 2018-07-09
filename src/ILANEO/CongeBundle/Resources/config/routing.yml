@@ -1,3 +1,30 @@
-ilaneo_conge_homepage:
+ilaneo_conge_connexion:
     path:     /
-    defaults: { _controller: ILANEOCongeBundle:Default:index }
+    defaults: { _controller: ILANEOCongeBundle:employe:connexion }
+
+ilaneo_conge_accueil:
+    path:     /main
+    defaults: { _controller: ILANEOCongeBundle:employe:index }
+
+ilaneo_conge_demandeConge:
+    path:     /demande
+    defaults: { _controller: ILANEOCongeBundle:employe:demande }
+
+ilaneo_conge_visualisationConge:
+    path:     /visualisation
+    defaults: { _controller: ILANEOCongeBundle:employe:visualisation }
+
+ilaneo_conge_attributionConge:
+    path:     /attribution
+    defaults: { _controller: ILANEOCongeBundle:Admin:attribution }
+
+ilaneo_conge_modificationListeEmp:
+    path:     /modifEmp
+    defaults: { _controller: ILANEOCongeBundle:Admin:modif }
+
+ilaneo_conge_ajoutEmp:
+    path:     /ajoutEmp
+    defaults: { _controller: ILANEOCongeBundle:Admin:ajout }
+
+
+
