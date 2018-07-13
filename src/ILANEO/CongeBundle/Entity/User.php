@@ -21,7 +21,12 @@ class User extends BaseUser
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="user_firstname", type="string", length=255)
+     */
+    private $userFirstname;
     /**
      * @var string
      *
@@ -108,7 +113,7 @@ class User extends BaseUser
     /**
      * @var int
      *
-     * @ORM\Column(name="registrationNumber", type="bigint", unique=true)
+     * @ORM\Column(name="registrationNumber", type="bigint", unique=true, nullable=true)
      */
     private $registrationNumber;
 
@@ -470,5 +475,29 @@ class User extends BaseUser
     public function getPaidVacation()
     {
         return $this->paidVacation;
+    }
+
+    /**
+     * Set userFirstname
+     *
+     * @param string $userFirstname
+     *
+     * @return User
+     */
+    public function setUserFirstname($userFirstname)
+    {
+        $this->userFirstname = $userFirstname;
+
+        return $this;
+    }
+
+    /**
+     * Get userFirstname
+     *
+     * @return string
+     */
+    public function getUserFirstname()
+    {
+        return $this->userFirstname;
     }
 }

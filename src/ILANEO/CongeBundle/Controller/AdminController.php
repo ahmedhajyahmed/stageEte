@@ -12,7 +12,7 @@ class AdminController extends Controller
 {
     public function attributionAction()
     {
-        return $this->render('@ILANEOConge/layoutAdmin.html.twig', array( ) );
+        return $this->render('layout.html.twig', array( ) );
     }
 
     public function modifAction()

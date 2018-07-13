@@ -3,8 +3,10 @@ ilaneo_conge_connexion:
     defaults: { _controller: ILANEOCongeBundle:employe:connexion }
 
 ilaneo_conge_accueil:
-    path:     /main
+    path:     /main/{id}
     defaults: { _controller: ILANEOCongeBundle:employe:index }
+    requirements:
+        id: \d+
 
 ilaneo_conge_demandeConge:
     path:     /demande

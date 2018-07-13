@@ -4,6 +4,7 @@ namespace ILANEO\CongeBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class employeController extends Controller
 {
@@ -15,8 +16,16 @@ class employeController extends Controller
         //return $this->render('ILANEOCongeBundle:employe:connexion.html.twig', array());
     }
 
-    public function indexAction()
+    public function indexAction($id)
     {
+        $repository= $this->getDoctrine()->getManager()->getRepository('ILANEOCongeBundle:User');
+        $user=$repository->find($id);
+        if($user==null)
+        {
+            throw new NotFoundHttpException("l'utilisateur n'existe pas. ");
+        }
+
+        return $this->render('@ILANEOConge\employe\index.html.twig',array('user' => $user));
         //return $this->render('ILANEOCongeBundle:employe:index.html.twig', array());
     }
 

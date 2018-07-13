@@ -21,32 +21,37 @@ class User extends BaseUser
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-
     /**
      * @var string
      *
-     * @ORM\Column(name="userLastname", type="string", length=255)
+     * @ORM\Column(name="user_firstname", type="string", length=255, nullable=true)
+     */
+    private $userFirstname;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="userLastname", type="string", length=255, nullable=true)
      */
     private $userLastname;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="cin", type="bigint", unique=true)
+     * @ORM\Column(name="cin", type="bigint", unique=true, nullable=true)
      */
     private $cin;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="birthDate", type="date")
+     * @ORM\Column(name="birthDate", type="date", nullable=true)
      */
     private $birthDate;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="phone", type="bigint")
+     * @ORM\Column(name="phone", type="bigint", nullable=true)
      */
     private $phone;
 
@@ -60,68 +65,69 @@ class User extends BaseUser
     /**
      * @var int
      *
-     * @ORM\Column(name="cnss", type="bigint", unique=true)
+     * @ORM\Column(name="cnss", type="bigint", unique=true, nullable=true)
      */
     private $cnss;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="recruitmentDate", type="date")
+     * @ORM\Column(name="recruitmentDate", type="date", nullable=true)
      */
     private $recruitmentDate;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="status", type="string", length=255)
+     * @ORM\Column(name="status", type="string", length=255, nullable=true)
      */
     private $status;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="post", type="string", length=255)
+     * @ORM\Column(name="post", type="string", length=255, nullable=true)
      */
     private $post;
     /**
      * @var float
      *
-     * @ORM\Column(name="startingSalary", type="float")
+     * @ORM\Column(name="startingSalary", type="float", nullable=true)
      */
     private $startingSalary;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="familySituation", type="string", length=255)
+     * @ORM\Column(name="familySituation", type="string", length=255, nullable=true)
      */
     private $familySituation;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="children", type="integer")
+     * @ORM\Column(name="children", type="integer", nullable=true)
      */
     private $children;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="registrationNumber", type="bigint", unique=true)
+     * @ORM\Column(name="registrationNumber", type="bigint", unique=true, nullable=true)
      */
     private $registrationNumber;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="bankAccount", type="bigint")
+     * @ORM\Column(name="bankAccount", type="bigint", nullable=true)
      */
     private $bankAccount;
 
     public function __construct()
     {
         parent::__construct();
+        $this->paidVacation=0;
         // your own logic
     }
 
@@ -446,5 +452,28 @@ class User extends BaseUser
     {
         return $this->bankAccount;
     }
-}
 
+    /**
+     * Set paidVacation
+     *
+     * @param integer $paidVacation
+     *
+     * @return User
+     */
+    public function setPaidVacation($paidVacation)
+    {
+        $this->paidVacation = $paidVacation;
+
+        return $this;
+    }
+
+    /**
+     * Get paidVacation
+     *
+     * @return integer
+     */
+    public function getPaidVacation()
+    {
+        return $this->paidVacation;
+    }
+}

@@ -33,3 +33,7 @@ services:
     # AppBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
+    ILANEOConge.form.user:
+        class: ILANEO\CongeBundle\Form\UserType
+        tags:
+            - { name: form.type, alias: ilaneo_conge_user }

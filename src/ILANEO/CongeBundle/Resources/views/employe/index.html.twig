@@ -1,0 +1,123 @@
+{% extends "@ILANEOConge/layoutEmployee.html.twig" %}
+
+{% block body %}
+
+    <div class="m-portlet__head">
+        <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+                <h3 class="m-portlet__head-text">
+                    Striped Rows
+                </h3>
+            </div>
+        </div>
+    </div>
+    <div class="m-portlet__body">
+        <!--begin::Section-->
+        <div class="m-section">
+            <div class="m-section__content">
+                <table class="table table-striped m-table">
+                    <tbody>
+                    <tr>
+                        <th>
+                            Nom
+                        </th>
+                        <th>
+                            {{ user.userLastname }}
+                        </th>
+                    </tr>
+                    <tr>
+                        <th scope="row">
+                            Prénom
+                        </th>
+                        <td>
+                            {{ user.userFirstname }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">
+                            N°CIN
+                        </th>
+                        <td>
+                            {{ user.cin }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">
+                            Date De Naissance
+                        </th>
+                        <td>
+                            {{ user.birthDate|date("d/m/Y") }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">
+                            Situation Familiale
+                        </th>
+                        <td>
+                            {{ user.familySituation }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">
+                            N°Télephone
+                        </th>
+                        <td>
+                            {{ user.phone }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">
+                            Email
+                        </th>
+                        <td>
+                            {{ user.email }}
+                        </td>
+                    </tr><tr>
+                        <th scope="row">
+                            Statut
+                        </th>
+                        <td>
+                            {{ user.status }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">
+                            Poste
+                        </th>
+                        <td>
+                            {{ user.post }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">
+                            Date De Recrutement
+                        </th>
+                        <td>
+                            {{ user.recruitmentDate|date("d/m/Y") }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">
+                            Salaire Brute
+                        </th>
+                        <td>
+                            {{ user.startingSalary }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">
+                            Congé Payé
+                        </th>
+                        <td>
+                            {{ user.paidVacation }}
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!--end::Section-->
+    </div>
+    <!--end::Form-->
+
+{% endblock %}

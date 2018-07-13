@@ -7,6 +7,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\RadioType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -26,6 +27,7 @@ class UserType extends AbstractType
     {
         $builder
             ->add('username', TextType::class)
+            ->add('userFirstname', TextType::class)
             ->add('userLastname', TextType::class)
             ->add('cin',IntegerType::class)
             ->add('birthDate', DateType::class,array('widget' => 'single_text',))
@@ -38,10 +40,30 @@ class UserType extends AbstractType
             ->add('startingSalary',IntegerType::class)
             ->add('familySituation',ChoiceType::class,array('choices'=> array('célibataire'=>'célibataire','marié'=>'marié')))
             ->add('children',IntegerType::class)
-            ->add('registrationNumber',IntegerType::class)
             ->add('bankAccount',IntegerType::class)
-            ->add('save',SubmitType::class);
+            //->add('save',SubmitType::class)
+            ->add('plainPassword', RepeatedType::class, array(
+                'type' => PasswordType::class,
+                'options' => array(
+                    'translation_domain' => 'FOSUserBundle',
+                    'attr' => array(
+                        'autocomplete' => 'new-password',
+                    ),
+                ),
+                'first_options' => array('label' => 'mot de passe ', 'attr' => array('class'=> 'form-control m-input')),
+                'second_options' => array('label' => 'confirmation du mot de passe','attr' => array('class'=> 'form-control m-input')),
+                'invalid_message' => 'fos_user.password.mismatch',
+            ))
+        ;
     }/**
+     * {@inheritdoc}
+     */
+    public function getParent()
+    {
+        return 'FOS\UserBundle\Form\Type\RegistrationFormType';
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
