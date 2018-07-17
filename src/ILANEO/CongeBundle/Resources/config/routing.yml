@@ -1,20 +1,20 @@
 ilaneo_conge_connexion:
     path:     /
-    defaults: { _controller: ILANEOCongeBundle:employe:index }
+    defaults: { _controller: ILANEOCongeBundle:Employe:index }
 
 #ilaneo_conge_accueil:
     #path:     /main/{id}
-    #defaults: { _controller: ILANEOCongeBundle:employe:connexion }
+    #defaults: { _controller: ILANEOCongeBundle:Employe:connexion }
     #requirements:
         #id: \d+
 
 ilaneo_conge_demandeConge:
     path:     /user/ask
-    defaults: { _controller: ILANEOCongeBundle:employe:ask }
+    defaults: { _controller: ILANEOCongeBundle:Employe:ask }
 
 ilaneo_conge_visualisationConge:
     path:     /user/visualization
-    defaults: { _controller: ILANEOCongeBundle:employe:visualization }
+    defaults: { _controller: ILANEOCongeBundle:Employe:visualization }
 
 ilaneo_conge_attributionConge:
     path:     /admin/test
@@ -28,5 +28,24 @@ ilaneo_conge_modificationListeEmp:
     #path:     /ajoutEmp
     #defaults: { _controller: ILANEOCongeBundle:Admin:ajout }
 
+ilaneo_conge_annualVacation:
+    path:   /annualVacation
+    defaults: { _controller: ILANEOCongeBundle:Employe:AnnualVacation}
 
+ilaneo_conge_SickVacation:
+    path:   /SickVacation
+    defaults: { _controller: ILANEOCongeBundle:Employe:SickVacation}
+
+ilaneo_conge_UnpaidVacation:
+    path:   /UnpaidVacation
+    defaults: { _controller: ILANEOCongeBundle:Employe:UnpaidVacation}
+
+ilaneo_conge_ExceptionalVacation:
+    path:   /ExceptionalVacation
+    defaults: { _controller: ILANEOCongeBundle:Employe:ExceptionalVacation}
+    
+ilaneo_conge_AuthorizationVacation:
+    path:   /AuthorizationVacation
+    defaults: { _controller: ILANEOCongeBundle:Employe:AuthorizationVacation}    
+    
 

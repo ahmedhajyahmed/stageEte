@@ -4,7 +4,7 @@ namespace ILANEO\CongeBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class employeControllerTest extends WebTestCase
+class EmployeControllerTest extends WebTestCase
 {
     public function testConnexion()
     {
