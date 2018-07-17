@@ -3,6 +3,7 @@
 namespace ILANEO\CongeBundle\Form;
 
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -38,7 +39,17 @@ class UserType extends AbstractType
             ->add('status',ChoiceType::class, array('choices'=>array('stagiaire'=>'stagiaire','employé'=>'employé','ancien employé'=>'ancien employé')))
             ->add('post',TextType::class)
             ->add('startingSalary',IntegerType::class)
-            ->add('familySituation',ChoiceType::class,array('choices'=> array('célibataire'=>'célibataire','marié'=>'marié')))
+            ->add('familySituation',ChoiceType::class,array('choices'=> array('célibataire'=>'célibataire','marié'=>'marié'),'expanded'=>true))
+            ->add('roles', CollectionType::class, array(
+                'entry_type'   => ChoiceType::class,
+                'entry_options'  => array(
+                    'choices'  => array(
+                        'Oui' => 'ROLE_ADMIN',
+                        'Non'     => 'ROLE_USER',
+                    ),
+                    'expanded'=>true,
+                ),
+            ))
             ->add('children',IntegerType::class)
             ->add('bankAccount',IntegerType::class)
             //->add('save',SubmitType::class)

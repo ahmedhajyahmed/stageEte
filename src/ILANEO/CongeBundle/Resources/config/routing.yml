@@ -1,32 +1,32 @@
 ilaneo_conge_connexion:
     path:     /
-    defaults: { _controller: ILANEOCongeBundle:employe:connexion }
-
-ilaneo_conge_accueil:
-    path:     /main/{id}
     defaults: { _controller: ILANEOCongeBundle:employe:index }
-    requirements:
-        id: \d+
+
+#ilaneo_conge_accueil:
+    #path:     /main/{id}
+    #defaults: { _controller: ILANEOCongeBundle:employe:connexion }
+    #requirements:
+        #id: \d+
 
 ilaneo_conge_demandeConge:
-    path:     /demande
-    defaults: { _controller: ILANEOCongeBundle:employe:demande }
+    path:     /user/ask
+    defaults: { _controller: ILANEOCongeBundle:employe:ask }
 
 ilaneo_conge_visualisationConge:
-    path:     /visualisation
-    defaults: { _controller: ILANEOCongeBundle:employe:visualisation }
+    path:     /user/visualization
+    defaults: { _controller: ILANEOCongeBundle:employe:visualization }
 
 ilaneo_conge_attributionConge:
-    path:     /attribution
-    defaults: { _controller: ILANEOCongeBundle:Admin:attribution }
+    path:     /admin/test
+    defaults: { _controller: ILANEOCongeBundle:Admin:test }
 
 ilaneo_conge_modificationListeEmp:
-    path:     /modifEmp
-    defaults: { _controller: ILANEOCongeBundle:Admin:modif }
+    path:     /admin/edit_emp
+    defaults: { _controller: ILANEOCongeBundle:Admin:edit }
 
-ilaneo_conge_ajoutEmp:
-    path:     /ajoutEmp
-    defaults: { _controller: ILANEOCongeBundle:Admin:ajout }
+#ilaneo_conge_ajoutEmp:
+    #path:     /ajoutEmp
+    #defaults: { _controller: ILANEOCongeBundle:Admin:ajout }
 
 
 

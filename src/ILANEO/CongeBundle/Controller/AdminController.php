@@ -5,17 +5,18 @@ namespace ILANEO\CongeBundle\Controller;
 use ILANEO\CongeBundle\Entity\User;
 use ILANEO\CongeBundle\Form\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class AdminController extends Controller
 {
-    public function attributionAction()
+    public function testAction()
     {
-        return $this->render('layout.html.twig', array( ) );
+        return new Response('Ceci est une page de test');
     }
 
-    public function modifAction()
+    public function editAction()
     {
         //return $this->render('ILANEOCongeBundle:Admin:modif.html.twig', array( ) );
         $response=new Response();
@@ -23,7 +24,7 @@ class AdminController extends Controller
         return $response;
     }
 
-    public function ajoutAction(Request $request)
+    /*public function ajoutAction(Request $request)
     {
         //return $this->render('ILANEOCongeBundle:Admin:ajout.html.twig', array( ) );
         $user=new User();
@@ -40,6 +41,6 @@ class AdminController extends Controller
         }
 
         return $this->render('@ILANEOConge/Admin/ajoutEmp.html.twig',array('form'=>$form->createView()));
-    }
+    }*/
 
 }
