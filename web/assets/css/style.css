@@ -1,0 +1,31 @@
+/*// POP-UP BASE STYLES //*/
+
+body{margin: 0; position: relative;}
+body.pop-up{background: #222;}
+#pop-up{
+  position: relative; 
+  top: 200px;
+  width: 600px;
+  height: 450px;
+  margin: 0 auto; 
+  text-align: center;
+}
+
+
+
+/*// POP-UP ANIMATION STYLES //*/
+
+
+#pop-up {
+  top: -590px;
+  animation: drop 0.5s ease forwards;
+}
+
+@keyframes drop {
+  0% {opacity: 0}
+  70% {transform: translateY(700px)}
+  100% {transform: translateY(650px); opacity: 1;}
+}
+
+
+

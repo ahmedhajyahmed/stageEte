@@ -16,12 +16,10 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class EmployeController extends Controller 
 {
-    /*public function connexionAction()
+    /*public function verifLoginAction()
     {
-        $response= new Response();
-        $response->setContent("<body>ahmed</body>");
-        return $response;
-        //return $this->render('ILANEOCongeBundle:Employe:connexion.html.twig', array());
+
+        return $this->redirectToRoute('ilaneo_conge_connexion');
     }*/
 
     public function indexAction()
