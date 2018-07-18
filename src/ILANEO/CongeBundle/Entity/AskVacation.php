@@ -71,6 +71,17 @@ class AskVacation
     private $typeVacation;
 
     /**
+     * @ORM\ManyToOne(targetEntity="AskVacation")
+     */
+    private $user;
+
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+
+    /**
      * Get id.
      *
      * @return int
@@ -127,6 +138,11 @@ class AskVacation
     {
         return $this->endDate;
     }
+
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }    
 
     /**
      * Set askDate.

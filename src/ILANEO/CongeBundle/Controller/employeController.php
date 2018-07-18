@@ -54,6 +54,7 @@ class EmployeController extends Controller
 
         $askVacation=new AskVacation();
         $user=new user();
+         
        
         $form = $this->createform(AnnualVacationType::class , $askVacation );
        
