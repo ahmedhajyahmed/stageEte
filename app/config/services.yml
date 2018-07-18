@@ -37,3 +37,9 @@ services:
         class: ILANEO\CongeBundle\Form\UserType
         tags:
             - { name: form.type, alias: ilaneo_conge_user }
+
+    ILANEOConge.form.changePassword:
+        class: ILANEO\CongeBundle\Form\ChangePasswordFormType
+        tags:
+            - { name: form.type, alias: ilaneo_conge_changePassword }
+

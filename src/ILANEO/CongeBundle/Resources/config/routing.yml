@@ -2,11 +2,9 @@ ilaneo_conge_connexion:
     path:     /
     defaults: { _controller: ILANEOCongeBundle:Employe:index }
 
-#ilaneo_conge_accueil:
-    #path:     /main/{id}
-    #defaults: { _controller: ILANEOCongeBundle:Employe:connexion }
-    #requirements:
-        #id: \d+
+#ilaneo_conge_verifLogin:
+    #path:     /verifLogin
+    #defaults: { _controller: ILANEOCongeBundle:Employe:verifLogin }
 
 ilaneo_conge_demandeConge:
     path:     /user/ask
@@ -46,6 +44,11 @@ ilaneo_conge_ExceptionalVacation:
     
 ilaneo_conge_AuthorizationVacation:
     path:   /AuthorizationVacation
-    defaults: { _controller: ILANEOCongeBundle:Employe:AuthorizationVacation}    
+    defaults: { _controller: ILANEOCongeBundle:Employe:AuthorizationVacation}
+
+#fos_user_security_login:
+    #path:    /log
+    #defaults: { _controller: ILANEOCongeBundle:Security:login}
+
     
 

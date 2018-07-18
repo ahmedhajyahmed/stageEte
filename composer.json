@@ -5,7 +5,7 @@
     "autoload": {
         "psr-4": {
             "AppBundle\\": "src/AppBundle",
-            "ILANEO\\CongeBundle\\": "src/ILANEO/CongeBundle" 
+            "ILANEO\\CongeBundle\\": "src/ILANEO/CongeBundle"
         },
         "classmap": [
             "app/AppKernel.php",

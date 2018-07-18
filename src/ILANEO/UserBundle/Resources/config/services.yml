@@ -1,0 +1,4 @@
+services:
+#    ilaneo_conge.example:
+#        class: ILANEO\CongeBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
