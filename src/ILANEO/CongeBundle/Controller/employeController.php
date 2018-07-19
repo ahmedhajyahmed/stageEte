@@ -10,6 +10,13 @@ use ILANEO\CongeBundle\Form\SickVacationType;
 use ILANEO\CongeBundle\Form\UnpaidVacationType;
 use ILANEO\CongeBundle\Form\ExceptionalVacationType;
 use ILANEO\CongeBundle\Form\AuthorizationVacationType;
+use ILANEO\CongeBundle\Form\UserType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -33,6 +40,37 @@ class EmployeController extends Controller
 
         return $this->render('@ILANEOConge\Employe\index.html.twig',array('user' => $user));
         //return $this->render('ILANEOCongeBundle:Employe:index.html.twig', array());
+    }
+
+    public function profileEditAction(Request $request)
+    {
+        $user=$this->getUser();
+        // On crée le FormBuilder grâce au service form factory
+        $formBuilder = $this->get('form.factory')->createBuilder(FormType::class, $user);
+
+        // On ajoute les champs de l'entité que l'on veut à notre formulaire
+        $formBuilder
+            ->add('familySituation',ChoiceType::class,array('choices'=> array('célibataire'=>'célibataire','marié'=>'marié'),'expanded'=>true))
+            ->add('children',IntegerType::class)
+            ->add('phone', IntegerType::class)
+            ->add('email', EmailType::class)
+            ->add('status',ChoiceType::class, array('choices'=>array('stagiaire'=>'stagiaire','employé'=>'employé','ancien employé'=>'ancien employé')))
+            ->add('post',TextType::class)
+            ->add('bankAccount',IntegerType::class);
+
+        $form = $formBuilder->getForm();
+
+        if($request->isMethod('POST') && $form->handleRequest($request)->isValid()){
+
+            $em=$this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+
+            $request->getSession()->getFlashBag()->add("notice","Vos changements ont été enregistré avec succée.");
+            return $this->redirectToRoute('ilaneo_conge_connexion');
+        }
+
+        return $this->render('@ILANEOConge/employe/profileEdit.html.twig',array('form'=>$form->createView()));
     }
 
     public function askAction()

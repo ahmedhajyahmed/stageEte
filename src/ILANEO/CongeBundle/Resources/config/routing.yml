@@ -50,5 +50,9 @@ ilaneo_conge_AuthorizationVacation:
     #path:    /log
     #defaults: { _controller: ILANEOCongeBundle:Security:login}
 
+ilaneo_conge_profileEdit:
+    path: /profileEdit
+    defaults: {_controller: ILANEOCongeBundle:Employe:profileEdit}
+
     
 
