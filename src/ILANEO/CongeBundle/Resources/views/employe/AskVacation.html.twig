@@ -1,0 +1,35 @@
+{%extends "::Layout.html.twig" %}
+{% block title %}Demander un congé{% endblock %}
+
+
+
+{% block body %}
+
+<style>
+    h6 { color: #FF0000; }
+</style>
+
+ <div class="m-portlet__head">
+            <div class="m-portlet__head-caption">
+                <div class="m-portlet__head-title">
+                                                    <span class="m-portlet__head-icon m--hide">
+                                                        <i class="la la-gear"></i>
+                                                    </span>
+                    <h3 class="m-portlet__head-text">
+                        Demander un congé
+                    </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<h4><p>Type de congé</p></h4> 
+<p>   
+<input type="button" name="http://localhost/stageEte/web/app_dev.php/annualVacation" value="congé annuel" onclick="self.location.href='annualVacation'" style="background-color:#d0cad0" style="color:white; font-weight:bold"onclick> 
+<input type="button" name="http://localhost/stageEte/web/app_dev.php/SickVacation" value="congé maladie" onclick="self.location.href='SickVacation'" style="background-color:#d0cad0" style="color:white; font-weight:bold"onclick> 
+<input type="button" name="http://localhost/stageEte/web/app_dev.php/unpaidVacation" value="congé sans solde" onclick="self.location.href='UnpaidVacation'" style="background-color:#d0cad0" style="color:white; font-weight:bold"onclick> 
+<input type="button" name="http://localhost/stageEte/web/app_dev.php/exceptionalVacation" value="congé exceptionnel" onclick="self.location.href='ExceptionalVacation'" style="background-color:#d0cad0" style="color:white; font-weight:bold"onclick> 
+<input type="button" name="http://localhost/stageEte/web/app_dev.php/authorizationVacation" value="authorisation de congé" onclick="self.location.href='AuthorizationVacation'" style="background-color:#d0cad0" style="color:white; font-weight:bold"onclick> 
+</p>
+
+{% endblock %}

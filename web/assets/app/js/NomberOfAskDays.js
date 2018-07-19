@@ -1,5 +1,5 @@
 
-var nomberOfDays=0
+var nomberOfDays
 var isset=function isset(variable)
 {
     if ( typeof( window[variable] ) != "undefined" ) 
@@ -15,7 +15,7 @@ var isset=function isset(variable)
 if (isset(startDate) && isset(endDate))
 {
     
-    document.write(dateDiff(startDate, endDate));
+    document.getElementById(nomberOfDays).innerText = dateDiff(startDate, endDate)
 }
 
 

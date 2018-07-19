@@ -7,7 +7,7 @@ ilaneo_conge_connexion:
     #defaults: { _controller: ILANEOCongeBundle:Employe:verifLogin }
 
 ilaneo_conge_demandeConge:
-    path:     /user/ask
+    path:     /ask
     defaults: { _controller: ILANEOCongeBundle:Employe:ask }
 
 ilaneo_conge_visualisationConge:
