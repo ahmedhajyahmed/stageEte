@@ -21,9 +21,9 @@
     <div class="m-portlet__body">
         <div class="m-form__section m-form__section--first">
             <div class="m-form__heading">
-                <h3 class="m-form__heading-title">
+                <h5 class="m-form__heading-title">
                     Identifiant de l'employé:
-                </h3>
+                </h5>
             </div>
             <div class="form-group m-form__group row">
                 {{ form_label(form.userLastname, "Nom", {'label_attr': {'class': 'col-lg-2 col-form-label'}}) }}
@@ -101,12 +101,12 @@
                 </div>
             </div>
         </div>
-        <div class="m-form__seperator m-form__seperator--dashed"></div>
+        <div class="m-separator m-separator--dashed m-separator--lg"></div>
         <div class="m-form__section m-form__section">
             <div class="m-form__heading">
-                <h3 class="m-form__heading-title">
+                <h5 class="m-form__heading-title">
                     statut de l'employé
-                </h3>
+                </h5>
             </div>
             <div class="form-group m-form__group row">
                 {{ form_label(form.recruitmentDate, "Date De Recruttement", {'label_attr': {'class': 'col-lg-2 col-form-label'}}) }}
@@ -145,12 +145,12 @@
                 </div>
             </div>
         </div>
-        <div class="m-form__seperator m-form__seperator--dashed"></div>
+        <div class="m-separator m-separator--dashed m-separator--lg"></div>
         <div class="m-form__section m-form__section">
             <div class="m-form__heading">
-                <h3 class="m-form__heading-title">
+                <h5 class="m-form__heading-title">
                     Situation de famille
-                </h3>
+                </h5>
             </div>
             <div class="form-group m-form__group row">
                 {{ form_label(form.familySituation, "état civil", {'label_attr': {'class': 'col-lg-2 col-form-label'}}) }}
@@ -158,7 +158,14 @@
                 {{ form_errors(form.familySituation) }}
 
                 <div class="col-lg-4 col-md-9 col-sm-12">
-                    {{ form_widget(form.familySituation, {'attr': {'class': 'm-radio-inline'}}) }}
+
+                    {% for family  in form.familySituation %}
+                        {{ form_widget(family, {'attr': {'class': 'm-radio-inline'}}) }}
+                        <label class="col-lg-2 col-form-label" style="padding-right: 130px">
+                          {{ form_label(family) }}
+                        </label>
+                        {{ form_errors(family) }}
+                    {% endfor %}
                 </div>
             </div>
             <div class="form-group m-form__group row">
@@ -171,12 +178,12 @@
                 </div>
             </div>
         </div>
-        <div class="m-form__seperator m-form__seperator--dashed"></div>
+        <div class="m-separator m-separator--dashed m-separator--lg"></div>
         <div class="m-form__section m-form__section--last">
             <div class="m-form__heading">
-                <h3 class="m-form__heading-title">
+                <h5 class="m-form__heading-title">
                     Application
-                </h3>
+                </h5>
             </div>
             <div class="form-group m-form__group row">
                 {{ form_label(form.username, "Login", {'label_attr': {'class': 'col-lg-2 col-form-label'}}) }}
@@ -202,18 +209,23 @@
                 {{ form_errors(form.roles) }}
 
                 <div class="col-lg-4 col-md-9 col-sm-12">
-                    {{ form_widget(form.roles, {'attr': {'class': 'm-radio-inline'}}) }}
+                    {% for roles  in form.roles %}
+                        {{ form_widget(roles, {'attr': {'class': 'm-radio-inline'}}) }}
+                        <label class="col-lg-2 col-form-label" >
+                            {{ form_label(roles) }}
+                        </label>
+                        {{ form_errors(roles) }}
+                    {% endfor %}
                 </div>
             </div>
         </div>
-        <div class="m-portlet__foot m-portlet__foot--fit">
-            <div class="m-form__actions m-form__actions">
-                <div class="row">
-                    <div class="col-lg-2"></div>
-                    <div class="col-lg-6">
-                        <input type="submit" class="btn btn-primary" value="{{ 'registration.submit'|trans }}"  style="margin-top: 10px"/>
-    {# {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }} #}
-                    </div>
+        <div class="m-separator m-separator--dashed m-separator--lg"></div>
+        <div class="m-form__actions m-form__actions" style="padding-bottom: 30px">
+            <div class="row">
+                <div class="col-lg-2"></div>
+                <div class="col-lg-6">
+                    <input type="submit" class="btn btn-primary" value="{{ 'registration.submit'|trans }}"  style="margin-top: 10px"/>
+                    {# {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }} #}
                 </div>
             </div>
         </div>

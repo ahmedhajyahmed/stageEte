@@ -43,6 +43,7 @@ class UserType extends AbstractType
                         'Non'     => 'ROLE_USER',
                     ),
                     'expanded'=>true,
+                    'label'=>false,
                 ),
             ))
             ->add('children',IntegerType::class)

@@ -1,12 +1,16 @@
 {% extends "::layout.html.twig" %}
 
+{% block title %}
+    Accueil {{ parent() }}
+{% endblock %}
+
 {% block body %}
 
     <div class="m-portlet__head">
         <div class="m-portlet__head-caption">
             <div class="m-portlet__head-title">
                 <h3 class="m-portlet__head-text">
-                    Striped Rows
+                    Mes coordonnées
                 </h3>
             </div>
         </div>
@@ -43,7 +47,7 @@
                     </tr>
                     <tr>
                         <th scope="row">
-                            Date De Naissance
+                            Date de naissance
                         </th>
                         <td>
                             {{ user.birthDate|date("d/m/Y") }}
@@ -51,7 +55,7 @@
                     </tr>
                     <tr>
                         <th scope="row">
-                            Situation Familiale
+                            Situation familiale
                         </th>
                         <td>
                             {{ user.familySituation }}
@@ -90,7 +94,7 @@
                     </tr>
                     <tr>
                         <th scope="row">
-                            Date De Recrutement
+                            Date de recrutement
                         </th>
                         <td>
                             {{ user.recruitmentDate|date("d/m/Y") }}
@@ -98,7 +102,7 @@
                     </tr>
                     <tr>
                         <th scope="row">
-                            Salaire Brute
+                            Salaire brute
                         </th>
                         <td>
                             {{ user.startingSalary }}
@@ -106,7 +110,7 @@
                     </tr>
                     <tr>
                         <th scope="row">
-                            Congé Payé
+                            Congé payé
                         </th>
                         <td>
                             {{ user.paidVacation }}

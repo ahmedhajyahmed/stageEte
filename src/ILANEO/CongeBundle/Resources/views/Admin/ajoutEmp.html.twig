@@ -1,109 +1,116 @@
-{% extends "@ILANEOConge/layoutAdmin.html.twig" %}
+{% extends "::layout.html.twig" %}
+
+
+{% block title  %}
+    ajouter employé {{ parent() }}
+ {% endblock %}
+{% trans_default_domain 'FOSUserBundle' %}
 
 {% block body %}
-        <div class="m-portlet__head">
-            <div class="m-portlet__head-caption">
-                <div class="m-portlet__head-title">
+    <div class="m-portlet__head">
+        <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
                                                     <span class="m-portlet__head-icon m--hide">
                                                         <i class="la la-gear"></i>
                                                     </span>
-                    <h3 class="m-portlet__head-text">
-                        Ajouter employé
-                    </h3>
+                <h3 class="m-portlet__head-text">
+                    Ajouter employé
+                </h3>
+            </div>
+        </div>
+    </div>
+    <!--begin::Form-->
+    {#{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }} #}
+    {{ form_start(form, {'attr': {'class': 'm-form m-form--label-align-right'}}) }}
+    <div class="m-portlet__body">
+        <div class="m-form__section m-form__section--first">
+            <div class="m-form__heading">
+                <h5 class="m-form__heading-title">
+                    Identifiant de l'employé:
+                </h5>
+            </div>
+            <div class="form-group m-form__group row">
+                {{ form_label(form.userLastname, "Nom", {'label_attr': {'class': 'col-lg-2 col-form-label'}}) }}
+
+                {{ form_errors(form.userLastname) }}
+
+                <div class="col-lg-6">
+                    {{ form_widget(form.userLastname, {'attr': {'class': 'form-control m-input'}}) }}
+                </div>
+            </div>
+            <div class="form-group m-form__group row">
+                {{ form_label(form.userFirstname, "Prénom", {'label_attr': {'class': 'col-lg-2 col-form-label'}}) }}
+
+                {{ form_errors(form.userFirstname) }}
+
+                <div class="col-lg-6">
+                    {{ form_widget(form.userFirstname, {'attr': {'class': 'form-control m-input'}}) }}
+                </div>
+            </div>
+            <div class="form-group m-form__group row">
+                {{ form_label(form.birthDate, "Date De Naissance", {'label_attr': {'class': 'col-lg-2 col-form-label'}}) }}
+
+                {{ form_errors(form.birthDate) }}
+
+                <div class="col-lg-6">
+                    {{ form_widget(form.birthDate, {'attr': {'class': 'form-control m-input'}}) }}
+                </div>
+            </div>
+            <div class="form-group m-form__group row">
+                {{ form_label(form.cin, "N° CIN", {'label_attr': {'class': 'col-lg-2 col-form-label'}}) }}
+
+                {{ form_errors(form.cin) }}
+
+                <div class="col-lg-6">
+                    {{ form_widget(form.cin, {'attr': {'class': 'form-control m-input'}}) }}
+                </div>
+            </div>
+            <div class="form-group m-form__group row">
+                {{ form_label(form.phone, "N°Télephone", {'label_attr': {'class': 'col-lg-2 col-form-label'}}) }}
+
+                {{ form_errors(form.phone) }}
+
+                <div class="col-lg-6">
+                    {{ form_widget(form.phone, {'attr': {'class': 'form-control m-input'}}) }}
+                </div>
+            </div>
+            <div class="form-group m-form__group row">
+                {{ form_label(form.email, "Email", {'label_attr': {'class': 'col-lg-2 col-form-label'}}) }}
+
+                {{ form_errors(form.email) }}
+
+                <div class="col-lg-6">
+                    {{ form_widget(form.email, {'attr': {'class': 'form-control m-input'}}) }}
+                    <span class="m-form__help">
+                            Nous ne partagerons jamais votre email avec quelqu'un d'autre
+                        </span>
+                </div>
+            </div>
+            <div class="form-group m-form__group row">
+                {{ form_label(form.cnss, "N° CNSS", {'label_attr': {'class': 'col-lg-2 col-form-label'}}) }}
+
+                {{ form_errors(form.cnss) }}
+
+                <div class="col-lg-6">
+                    {{ form_widget(form.cnss, {'attr': {'class': 'form-control m-input'}}) }}
+                </div>
+            </div>
+            <div class="form-group m-form__group row">
+                {{ form_label(form.bankAccount, "Compte Bancaire", {'label_attr': {'class': 'col-lg-2 col-form-label'}}) }}
+
+                {{ form_errors(form.bankAccount) }}
+
+                <div class="col-lg-6">
+                    {{ form_widget(form.bankAccount, {'attr': {'class': 'form-control m-input'}}) }}
                 </div>
             </div>
         </div>
-    <!--begin::Form-->
-        {{ form_start(form, {'attr': {'class': 'm-form m-form--label-align-right'}}) }}
-            <div class="m-portlet__body">
-                <div class="m-form__section m-form__section--first">
-                    <div class="m-form__heading">
-                        <h3 class="m-form__heading-title">
-                            Identifiant de l'employé:
-                        </h3>
-                    </div>
-                <div class="form-group m-form__group row">
-                    {{ form_label(form.userLastname, "Nom", {'label_attr': {'class': 'col-lg-2 col-form-label'}}) }}
-
-                    {{ form_errors(form.userLastname) }}
-
-                    <div class="col-lg-6">
-                        {{ form_widget(form.userLastname, {'attr': {'class': 'form-control m-input'}}) }}
-                    </div>
-                </div>
-                <div class="form-group m-form__group row">
-                    {{ form_label(form.userFirstname, "Prénom", {'label_attr': {'class': 'col-lg-2 col-form-label'}}) }}
-
-                    {{ form_errors(form.userFirstname) }}
-
-                    <div class="col-lg-6">
-                        {{ form_widget(form.userFirstname, {'attr': {'class': 'form-control m-input'}}) }}
-                    </div>
-                </div>
-                 <div class="form-group m-form__group row">
-                     {{ form_label(form.birthDate, "Date De Naissance", {'label_attr': {'class': 'col-lg-2 col-form-label'}}) }}
-
-                     {{ form_errors(form.birthDate) }}
-
-                     <div class="col-lg-6">
-                         {{ form_widget(form.birthDate, {'attr': {'class': 'form-control m-input'}}) }}
-                     </div>
-                 </div>
-                <div class="form-group m-form__group row">
-                    {{ form_label(form.cin, "N° CIN", {'label_attr': {'class': 'col-lg-2 col-form-label'}}) }}
-
-                    {{ form_errors(form.cin) }}
-
-                    <div class="col-lg-6">
-                        {{ form_widget(form.cin, {'attr': {'class': 'form-control m-input'}}) }}
-                    </div>
-                </div>
-                <div class="form-group m-form__group row">
-                    {{ form_label(form.phone, "tél", {'label_attr': {'class': 'col-lg-2 col-form-label'}}) }}
-
-                    {{ form_errors(form.phone) }}
-
-                    <div class="col-lg-6">
-                        {{ form_widget(form.phone, {'attr': {'class': 'form-control m-input'}}) }}
-                    </div>
-                </div>
-                <div class="form-group m-form__group row">
-                    {{ form_label(form.email, "email", {'label_attr': {'class': 'col-lg-2 col-form-label'}}) }}
-
-                    {{ form_errors(form.email) }}
-
-                    <div class="col-lg-6">
-                        {{ form_widget(form.email, {'attr': {'class': 'form-control m-input'}}) }}
-                        <span class="m-form__help">
-                            Nous ne partagerons jamais votre email avec quelqu'un d'autre
-                        </span>
-                    </div>
-                </div>
-                <div class="form-group m-form__group row">
-                    {{ form_label(form.cnss, "N° CNSS", {'label_attr': {'class': 'col-lg-2 col-form-label'}}) }}
-
-                    {{ form_errors(form.cnss) }}
-
-                    <div class="col-lg-6">
-                        {{ form_widget(form.cnss, {'attr': {'class': 'form-control m-input'}}) }}
-                    </div>
-                </div>
-                <div class="form-group m-form__group row">
-                    {{ form_label(form.bankAccount, "Compte Bancaire", {'label_attr': {'class': 'col-lg-2 col-form-label'}}) }}
-
-                    {{ form_errors(form.bankAccount) }}
-
-                    <div class="col-lg-6">
-                        {{ form_widget(form.bankAccount, {'attr': {'class': 'form-control m-input'}}) }}
-                    </div>
-                </div>
-        </div>
-        <div class="m-form__seperator m-form__seperator--dashed"></div>
+        <div class="m-separator m-separator--dashed m-separator--lg"></div>
         <div class="m-form__section m-form__section">
             <div class="m-form__heading">
-                <h3 class="m-form__heading-title">
+                <h5 class="m-form__heading-title">
                     statut de l'employé
-                </h3>
+                </h5>
             </div>
             <div class="form-group m-form__group row">
                 {{ form_label(form.recruitmentDate, "Date De Recruttement", {'label_attr': {'class': 'col-lg-2 col-form-label'}}) }}
@@ -142,20 +149,27 @@
                 </div>
             </div>
         </div>
-        <div class="m-form__seperator m-form__seperator--dashed"></div>
+        <div class="m-separator m-separator--dashed m-separator--lg"></div>
         <div class="m-form__section m-form__section">
             <div class="m-form__heading">
-                <h3 class="m-form__heading-title">
+                <h5 class="m-form__heading-title">
                     Situation de famille
-                </h3>
+                </h5>
             </div>
             <div class="form-group m-form__group row">
-                {{ form_label(form.familySituation, "", {'label_attr': {'class': 'col-lg-2 col-form-label'}}) }}
+                {{ form_label(form.familySituation, "état civil", {'label_attr': {'class': 'col-lg-2 col-form-label'}}) }}
 
                 {{ form_errors(form.familySituation) }}
 
-                <div class="col-lg-6">
-                    {{ form_widget(form.familySituation, {'attr': {'class': 'form-control m-input'}}) }}
+                <div class="col-lg-4 col-md-9 col-sm-12">
+
+                    {% for family  in form.familySituation %}
+                        {{ form_widget(family, {'attr': {'class': 'm-radio-inline'}}) }}
+                        <label class="col-lg-2 col-form-label" style="padding-right: 130px">
+                            {{ form_label(family) }}
+                        </label>
+                        {{ form_errors(family) }}
+                    {% endfor %}
                 </div>
             </div>
             <div class="form-group m-form__group row">
@@ -168,12 +182,12 @@
                 </div>
             </div>
         </div>
-        <div class="m-form__seperator m-form__seperator--dashed"></div>
+        <div class="m-separator m-separator--dashed m-separator--lg"></div>
         <div class="m-form__section m-form__section--last">
             <div class="m-form__heading">
-                <h3 class="m-form__heading-title">
+                <h5 class="m-form__heading-title">
                     Application
-                </h3>
+                </h5>
             </div>
             <div class="form-group m-form__group row">
                 {{ form_label(form.username, "Login", {'label_attr': {'class': 'col-lg-2 col-form-label'}}) }}
@@ -193,18 +207,34 @@
                     {{ form_widget(form.plainPassword, {'attr': {'class': 'form-control m-input'}}) }}
                 </div>
             </div>
+            <div class="form-group m-form__group row" style="padding-bottom: 10px">
+                {{ form_label(form.roles, "Administrateur", {'label_attr': {'class': 'col-lg-2 col-form-label'}}) }}
+
+                {{ form_errors(form.roles) }}
+
+                <div class="col-lg-4 col-md-9 col-sm-12">
+                    {% for roles  in form.roles %}
+                        {{ form_widget(roles, {'attr': {'class': 'm-radio-inline'}}) }}
+                        <label class="col-lg-2 col-form-label" >
+                            {{ form_label(roles) }}
+                        </label>
+                        {{ form_errors(roles) }}
+                    {% endfor %}
+                </div>
+            </div>
         </div>
-        <div class="m-portlet__foot m-portlet__foot--fit">
-            <div class="m-form__actions m-form__actions">
-                <div class="row">
-                    <div class="col-lg-2"></div>
-                    <div class="col-lg-6">
-                        {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
-                    </div>
+        <div class="m-separator m-separator--dashed m-separator--lg"></div>
+        <div class="m-form__actions m-form__actions" style="padding-bottom: 30px">
+            <div class="row">
+                <div class="col-lg-2"></div>
+                <div class="col-lg-6">
+                    <input type="submit" class="btn btn-primary" value="Enregistrer"  style="margin-top: 10px"/>
+                    {# {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }} #}
                 </div>
             </div>
         </div>
         {{ form_end(form) }}
 
+    </div>
 
 {% endblock %}

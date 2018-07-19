@@ -22,9 +22,9 @@ ilaneo_conge_modificationListeEmp:
     path:     /admin/edit_emp
     defaults: { _controller: ILANEOCongeBundle:Admin:edit }
 
-#ilaneo_conge_ajoutEmp:
-    #path:     /ajoutEmp
-    #defaults: { _controller: ILANEOCongeBundle:Admin:ajout }
+ilaneo_conge_ajoutEmp:
+    path:     /admin/ajoutEmp
+    defaults: { _controller: ILANEOCongeBundle:Admin:ajout }
 
 ilaneo_conge_annualVacation:
     path:   /annualVacation

@@ -1,7 +1,11 @@
 {% extends '::layout.html.twig' %}
 
+{% block title  %}
+    changer profile {{ parent() }}
+ {% endblock %}
+
 {% block body %}
-    <div class="m-portlet" >
+    <div class="m-portlet"  >
         <div class="m-portlet__head">
             <div class="m-portlet__head-caption">
                 <div class="m-portlet__head-title">
@@ -9,7 +13,7 @@
 													<i class="la la-gear"></i>
 												</span>
                     <h3 class="m-portlet__head-text">
-                        Changer votre profile
+                        Changer profile
                     </h3>
                 </div>
             </div>
@@ -21,7 +25,14 @@
 
                 {{ form_errors(form.familySituation) }}
                 <div class="col-9">
-                    {{ form_widget(form.familySituation, {'attr': {'class': 'm-radio-inline','type':'radio','placeholder':'user.familySituation'}}) }}									</span>
+                    {% for family  in form.familySituation %}
+                        {{ form_widget(family, {'attr': {'class': 'm-radio-inline'}}) }}
+                        <label class="col-lg-2 col-form-label" style="padding-right: 130px">
+                            {{ form_label(family) }}
+                        </label>
+                        {{ form_errors(family) }}
+                    {% endfor %}
+
                 </div>
             </div>
             <div class="form-group m-form__group row">
@@ -73,17 +84,15 @@
                 </div>
             </div>
         </div>
-        <div class="m-portlet__foot m-portlet__foot--fit">
-            <div class="m-form__actions m-form__actions--solid">
-                <div class="row">
-                    <div class="col-3"></div>
-                    <div class="col-9">
-                        <button type="submit" class="btn btn-brand">
-                            Enregistrer
-                        </button>
-                        <a class="btn btn-brand" href="{{ path('ilaneo_conge_connexion') }}" role="button">Retour</a>
+        <div class="m-form__actions m-form__actions--solid" style="padding-bottom: 50px">
+            <div class="row">
+                <div class="col-3"></div>
+                <div class="col-9">
+                    <button type="submit" class="btn btn-brand">
+                        Enregistrer
+                    </button>
+                    <a class="btn btn-brand" href="{{ path('ilaneo_conge_connexion') }}" role="button">Retour</a>
 
-                    </div>
                 </div>
             </div>
         </div>

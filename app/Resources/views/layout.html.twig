@@ -16,7 +16,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <head>
     <meta charset="utf-8" />
     <title>
-        {% block title %}ILANEO Congé {% endblock %}
+        {% block title %}- ILANEO Congé {% endblock %}
     </title>
     <meta name="description" content="Background events examples">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -39,6 +39,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <!--end::Page Vendors -->
     <link href="{{ asset('assets/vendors/base/vendors.bundle.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/demo/demo5/base/style.bundle.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/radio.css') }}" rel="stylesheet" type="text/css" />
     <!--<link href="assets/demo/default/base/style.bundle.css" rel="stylesheet" type="text/css" /> -->
     {% endblock %}
     <!--end::Base Styles -->
@@ -59,7 +60,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     <div class="m-stack__item m-brand">
                         <div class="m-stack m-stack--ver m-stack--general m-stack--inline">
                             <div class="m-stack__item m-stack__item--middle m-brand__logo">
-                                <a href="#" class="m-brand__logo-wrapper">
+                                <a href="{{ path('ilaneo_conge_connexion') }}" class="m-brand__logo-wrapper">
                                     <img alt="" src="{{ asset('assets/demo/demo5/media/img/logo/logo.png') }}"/>
                                 </a>
                             </div>
@@ -234,7 +235,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                         <a  href="{{ path('ilaneo_conge_connexion' )}}" class="m-menu__link ">
                                             <span class="m-menu__item-here"></span>
                                             <span class="m-menu__link-text">
-                                                            Acceuil
+                                                            Accueil
                                                         </span>
                                         </a>
                                     </li>
@@ -299,7 +300,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                     </a>
                                                 </li>
                                                 <li class="m-menu__item "  aria-haspopup="true">
-                                                    <a  href="{{ path('fos_user_registration_register') }}" class="m-menu__link ">
+                                                    <a  href="{{ path('ilaneo_conge_ajoutEmp') }}" class="m-menu__link ">
                                                         <i class="m-menu__link-icon flaticon-users"></i>
                                                         <span class="m-menu__link-title">
                                                                         <span class="m-menu__link-wrap">
@@ -327,7 +328,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                         <a  href="{{ path('ilaneo_conge_connexion' )}}" class="m-menu__link ">
                                             <span class="m-menu__item-here"></span>
                                             <span class="m-menu__link-text">
-													Acceuil
+													Accueil
 												</span>
                                         </a>
                                     </li>
