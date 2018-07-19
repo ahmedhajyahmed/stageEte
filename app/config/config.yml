@@ -74,8 +74,8 @@ fos_user:
     firewall_name: main
     user_class: ILANEO\CongeBundle\Entity\User
     from_email:
-        address: hajyahmedboh@yahoo.com
-        sender_name: ILANEO Team
+        address: "%mailer_user%"
+        sender_name: "%mailer_user%"
     registration:
         form:
                 type: ILANEO\CongeBundle\Form\UserType
