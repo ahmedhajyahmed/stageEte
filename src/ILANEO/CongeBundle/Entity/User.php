@@ -4,6 +4,7 @@ namespace ILANEO\CongeBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * User
@@ -25,12 +26,14 @@ class User extends BaseUser
      * @var string
      *
      * @ORM\Column(name="user_firstname", type="string", length=255)
+     * @Assert\Length(min="3")
      */
     private $userFirstname;
     /**
      * @var string
      *
      * @ORM\Column(name="userLastname", type="string", length=255)
+     * @Assert\Length(min="3")
      */
     private $userLastname;
 
@@ -38,6 +41,7 @@ class User extends BaseUser
      * @var int
      *
      * @ORM\Column(name="cin", type="bigint", unique=true)
+     * @Assert\Range(min="8")
      */
     private $cin;
 
@@ -45,6 +49,7 @@ class User extends BaseUser
      * @var \DateTime
      *
      * @ORM\Column(name="birthDate", type="date")
+     * @Assert\LessThanOrEqual("-18 years")
      */
     private $birthDate;
 
@@ -52,6 +57,7 @@ class User extends BaseUser
      * @var int
      *
      * @ORM\Column(name="phone", type="bigint")
+     * @Assert\Range(min="8")
      */
     private $phone;
 
@@ -66,6 +72,7 @@ class User extends BaseUser
      * @var int
      *
      * @ORM\Column(name="cnss", type="bigint", unique=true)
+     * @Assert\Range(min="6")
      */
     private $cnss;
 
@@ -73,6 +80,7 @@ class User extends BaseUser
      * @var \DateTime
      *
      * @ORM\Column(name="recruitmentDate", type="date")
+     * @Assert\LessThan("today")
      */
     private $recruitmentDate;
 
@@ -93,6 +101,7 @@ class User extends BaseUser
      * @var float
      *
      * @ORM\Column(name="startingSalary", type="float")
+     * @Assert\GreaterThanOrEqual(value="100")
      */
     private $startingSalary;
 
@@ -107,6 +116,7 @@ class User extends BaseUser
      * @var int
      *
      * @ORM\Column(name="children", type="integer")
+     * @Assert\GreaterThanOrEqual(value="0")
      */
     private $children;
 
@@ -121,6 +131,7 @@ class User extends BaseUser
      * @var int
      *
      * @ORM\Column(name="bankAccount", type="bigint")
+     * @Assert\Range(min="6")
      */
     private $bankAccount;
 

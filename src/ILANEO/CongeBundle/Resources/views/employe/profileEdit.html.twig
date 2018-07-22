@@ -5,7 +5,7 @@
  {% endblock %}
 
 {% block body %}
-    <div class="m-portlet"  >
+    <div class="m-portlet"    >
         <div class="m-portlet__head">
             <div class="m-portlet__head-caption">
                 <div class="m-portlet__head-title">
@@ -19,7 +19,7 @@
             </div>
         </div>
         <!--begin::Form-->
-        {{ form_start(form, {  'attr': { 'class': 'm-form' } }) }}
+        {{ form_start(form, {  'attr': { 'class': 'm-form','style':'margin-left:30px' } }) }}
             <div class="form-group m-form__group row">
                 {{ form_label(form.familySituation, "Etat civil", {'label_attr': {'class': 'col-3 col-form-label'}}) }}
 

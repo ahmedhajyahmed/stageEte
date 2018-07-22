@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace ILANEO\UserBundle;
+namespace FOS\UserBundle;
 
 use Doctrine\Bundle\CouchDBBundle\DependencyInjection\Compiler\DoctrineCouchDBMappingsPass;
 use Doctrine\Bundle\DoctrineBundle\DependencyInjection\Compiler\DoctrineOrmMappingsPass;
@@ -28,9 +28,4 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
  */
 class FOSUserBundle extends Bundle
 {
-    public function getParent()
-    {
-        return 'FOSUserBundle';
-    }
-
 }
