@@ -26,12 +26,6 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class EmployeController extends Controller 
 {
-    
-    /*public function verifLoginAction()
-    {
-
-        return $this->redirectToRoute('ilaneo_conge_connexion');
-    }*/
 
     //page d'accueim
     public function indexAction()
@@ -178,7 +172,6 @@ class EmployeController extends Controller
         
         //on récupére le formulaire 
         $askVacation=new AskVacation();
-        $user=setTypeVacation("authorisation d'absence");
         
         $form = $this->createform(AuthorizationVacationType::class , $askVacation );
             
@@ -208,6 +201,48 @@ class EmployeController extends Controller
         $formView = $form->createView();
         return $this->render('@ILANEOConge/Employe/AuthorizationVacation.html.twig',array('form'=>$formView,'user'=>$user));
     }
+
+
+    public function uploadAction(UploadedFile $file)
+    {
+        $fileName = md5(uniqid()).'.'.$file->guessExtension();
+
+        $file->move($this->getTargetDir(), $fileName);
+
+        return $fileName;
+    }
+
+    public function prePersistAction(LifecycleEventArgs $args)
+    {
+        $entity = $args->getEntity();
+
+        $this->uploadFile($entity);
+    }
+
+    public function preUpdateAction(PreUpdateEventArgs $args)
+    {
+        $entity = $args->getEntity();
+
+        $this->uploadFile($entity);
+    }
+
+    private function uploadFileAction($entity)
+    {
+        if (!$entity instanceof AskVacation) 
+        {
+            return;
+        }
+
+        $file = $entity->getsupportingDoc();
+
+        if (!$file instanceof UploadedFile) {
+            return;
+        }
+
+        $fileName = $this->uploader->upload($file);
+        $entity->setsupportiongDoc($fileName);
+    } 
+
 
 
     //page mot de passe oublié

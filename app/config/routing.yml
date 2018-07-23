@@ -13,9 +13,9 @@ fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 
 #le bundle qui gére les routes pour l'intégration du calendrier
-fos_js_routing:
-    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+#fos_js_routing:
+    #resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
 
 #le bundle qui gére les calendrier
-adesigns_calendar:
-  resource: "@ADesignsCalendarBundle/Resources/config/routing.xml"
+#adesigns_calendar:
+  #resource: "@ADesignsCalendarBundle/Resources/config/routing.xml"
