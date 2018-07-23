@@ -3,6 +3,7 @@
 namespace ILANEO\CongeBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * AskVacation
@@ -43,9 +44,9 @@ class AskVacation
     private $askDate;
 
     /**
-     * @var string
+     * @var string|null
      *
-     * @ORM\Column(name="state", type="string", length=20)
+     * @ORM\Column(name="state", type="string", length=20,nullable=true)
      */
     private $state;
 
@@ -58,15 +59,16 @@ class AskVacation
 
     /**
      * @var string|null
-     *
+     * @Assert\NotBlank(message="Ajouter une fichier pdf")
+     * @Assert\File(mimeTypes={ "application/pdf" })
      * @ORM\Column(name="supportingDoc", type="text", nullable=true)
      */
     private $supportingDoc;
 
     /**
-     * @var string
+     * @var string|null
      *
-     * @ORM\Column(name="typeVacation", type="string", length=50)
+     * @ORM\Column(name="typeVacation", type="string", length=50,nullable=true)
      */
     private $typeVacation;
 
@@ -74,6 +76,11 @@ class AskVacation
      * @ORM\ManyToOne(targetEntity="AskVacation")
      */
     private $user;
+    
+    public function __construct()
+    {
+        $this->askDate = new \DateTime('now');
+    }
 
     public function getUser()
     {
