@@ -1,22 +1,12 @@
+var startForm= $("#ilaneo_congebundle_authorizationvacation_startDate").val();
+var start = moment(startForm).startOf('day');
 
-var nomberOfDays
-var isset=function isset(variable)
-{
-    if ( typeof( window[variable] ) != "undefined" ) 
-    {
-         return true;
-    }
-    else 
-    {
-         return false;
-    }
-}
+var endForm = $("#ilaneo_congebundle_authorizationvacation_endDate").val();
+var end= moment(endForm).startOf('day');
 
-if (isset(startDate) && isset(endDate))
-{
-    
-    document.getElementById(nomberOfDays).innerText = dateDiff(startDate, endDate)
-}
+var diff= Math.abs(moment.duration(start.diff(end)).asDays());
+console.log(diff);
 
+$("#diff").val(diff)
 
 

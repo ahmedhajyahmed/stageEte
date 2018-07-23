@@ -20,9 +20,12 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+
 
 class EmployeController extends Controller 
 {
+    
     /*public function verifLoginAction()
     {
 
@@ -84,7 +87,8 @@ class EmployeController extends Controller
         //return $this->render('ILANEOCongeBundle:Employe:visualisation.html.twig', array());
     }
 
-    public function annualVacationAction()
+
+    public function annualVacationAction(Request $request)
     {
         //on récupére le formulaire 
 
@@ -94,6 +98,16 @@ class EmployeController extends Controller
        
         $form = $this->createform(AnnualVacationType::class , $askVacation );
        
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid())
+        {
+
+            $askVacation = $form->getData();
+
+            return $this->redirectToRoute('ilaneo_conge_connexion');
+            
+        }    
         //on génére le HTML du formulaire créé
         
         $formView = $form->createView();
@@ -154,21 +168,82 @@ class EmployeController extends Controller
         return $this->render('@ILANEOConge/Employe/ExceptionalVacation.html.twig',array('form'=>$formView , 'user' =>$user,));
     }
 
-    public function AuthorizationVacationAction()
+    public function AuthorizationVacationAction(Request $request)
     {
         $user=$this->getUser();
+        
         //on récupére le formulaire 
 
         $askVacation=new AskVacation();
+       
         $form = $this->createform(AuthorizationVacationType::class , $askVacation );
             
         //on génére le HTML du formulaire créé
         
-        $formView = $form->createView();
 
+        if ($request->isMethod('POST')) 
+        {
+            
+            $form->handleRequest($request);
+      
+            if ($form->isValid()) 
+            {
+              
+              $em = $this->getDoctrine()->getManager();
+              $em->persist($askVacation);
+              $em->flush();
+      
+              $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
+      
+              return $this->redirectToRoute('ilaneo_conge_connexion');
+            }
+        }
+      
         //on rend la vue
 
+        $formView = $form->createView();
         return $this->render('@ILANEOConge/Employe/AuthorizationVacation.html.twig',array('form'=>$formView,'user'=>$user));
     }
 
+    public function uploadAction(UploadedFile $file)
+    {
+        $fileName = md5(uniqid()).'.'.$file->guessExtension();
+
+        $file->move($this->getTargetDir(), $fileName);
+
+        return $fileName;
+    }
+
+    public function prePersistAction(LifecycleEventArgs $args)
+    {
+        $entity = $args->getEntity();
+
+        $this->uploadFile($entity);
+    }
+
+    public function preUpdateAction(PreUpdateEventArgs $args)
+    {
+        $entity = $args->getEntity();
+
+        $this->uploadFile($entity);
+    }
+
+    private function uploadFileAction($entity)
+    {
+        if (!$entity instanceof AskVacation) 
+        {
+            return;
+        }
+
+        $file = $entity->getsupportingDoc();
+
+        if (!$file instanceof UploadedFile) {
+            return;
+        }
+
+        $fileName = $this->uploader->upload($file);
+        $entity->setsupportiongDoc($fileName);
+    } 
+
+    
 }
