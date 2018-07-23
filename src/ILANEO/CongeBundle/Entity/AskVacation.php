@@ -44,11 +44,11 @@ class AskVacation
     private $askDate;
 
     /**
-     * @var string|null
+     * @var string
      *
-     * @ORM\Column(name="state", type="string", length=20,nullable=true)
+     * @ORM\Column(name="state", type="string", length=20)
      */
-    private $state;
+    private $etat;
 
     /**
      * @var string|null
@@ -66,9 +66,9 @@ class AskVacation
     private $supportingDoc;
 
     /**
-     * @var string|null
+     * @var string
      *
-     * @ORM\Column(name="typeVacation", type="string", length=50,nullable=true)
+     * @ORM\Column(name="typeVacation", type="string", length=50)
      */
     private $typeVacation;
 
@@ -80,6 +80,7 @@ class AskVacation
     public function __construct()
     {
         $this->askDate = new \DateTime('now');
+        $this->etat= "demande en cours d'étude";
     }
 
     public function getUser()
