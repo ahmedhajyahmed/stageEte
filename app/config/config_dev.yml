@@ -38,4 +38,8 @@ monolog:
         #    level: info
 
 #swiftmailer:
+ #   transport: gmail
+  #  username:  '%mailer_user%'
+    #password:  '%mailer_password%'
+
 #    delivery_addresses: ['me@example.com']

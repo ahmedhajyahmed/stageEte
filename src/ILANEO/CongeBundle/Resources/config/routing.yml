@@ -1,3 +1,4 @@
+# page d'accueil
 ilaneo_conge_connexion:
     path:     /
     defaults: { _controller: ILANEOCongeBundle:Employe:index }
@@ -6,25 +7,27 @@ ilaneo_conge_connexion:
     #path:     /verifLogin
     #defaults: { _controller: ILANEOCongeBundle:Employe:verifLogin }
 
+# page demander congé
 ilaneo_conge_demandeConge:
     path:     /ask
     defaults: { _controller: ILANEOCongeBundle:Employe:ask }
 
-ilaneo_conge_visualisationConge:
-    path:     /user/visualization
-    defaults: { _controller: ILANEOCongeBundle:Employe:visualization }
 
+#page liste des demandes
 ilaneo_conge_attributionConge:
     path:     /admin/test
     defaults: { _controller: ILANEOCongeBundle:Admin:test }
 
+#page liste des employés
 ilaneo_conge_modificationListeEmp:
     path:     /admin/edit_emp
     defaults: { _controller: ILANEOCongeBundle:Admin:edit }
 
+#page ajouter employé
 ilaneo_conge_ajoutEmp:
     path:     /admin/ajoutEmp
     defaults: { _controller: ILANEOCongeBundle:Admin:ajout }
+
 
 ilaneo_conge_annualVacation:
     path:   /annualVacation
@@ -46,13 +49,19 @@ ilaneo_conge_AuthorizationVacation:
     path:   /AuthorizationVacation
     defaults: { _controller: ILANEOCongeBundle:Employe:AuthorizationVacation}
 
-#fos_user_security_login:
-    #path:    /log
-    #defaults: { _controller: ILANEOCongeBundle:Security:login}
 
+#page modifier profile
 ilaneo_conge_profileEdit:
-    path: /profileEdit
+    path: /user/profileEdit
     defaults: {_controller: ILANEOCongeBundle:Employe:profileEdit}
 
-    
+#page mot de passe oublié
+ilaneo_conge_resetPassword:
+    path: /resetPassword
+    defaults: {_controller: ILANEOCongeBundle:Employe:resetPassword}
+
+# mes demandes
+ilaneo_conge_myRequests:
+    path: /user/myRequests
+    defaults: {_controller: ILANEOCongeBundle:Employe:myRequests}
 

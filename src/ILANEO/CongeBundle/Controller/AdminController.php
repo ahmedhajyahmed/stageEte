@@ -11,29 +11,37 @@ use Symfony\Component\HttpFoundation\Response;
 
 class AdminController extends Controller
 {
-    public function testAction()
-    {
-        return new Response('Ceci est une page de test');
-    }
 
+
+    //page liste des employés
     public function editAction()
     {
         //return $this->render('ILANEOCongeBundle:Admin:modif.html.twig', array( ) );
-        $response=new Response();
-        $response->setContent('liste des employé');
-        return $response;
     }
 
+    //page ajouter employé
     public function ajoutAction(Request $request)
     {
-        //return $this->render('ILANEOCongeBundle:Admin:ajout.html.twig', array( ) );
+
         $user=new User();
+        //on récupére le formulaire
         $form=$this->createForm(UserType::class,$user);
 
+        //traitement si formulaire envoyé et est valide
         if($request->isMethod('POST') && $form->handleRequest($request)->isValid()){
 
+            //on récupére le entity manager
             $em=$this->getDoctrine()->getManager();
+            //on active l'utilisateur
             $user->setEnabled(true);
+            //traitement pour calculer le nombre de congé en solde
+            $recruitmentDate=$user->getRecruitmentDate();
+            $today = date_create("now");
+            $interval = date_diff( $today,$recruitmentDate);
+            $res= $interval->days;
+            $paidVacation=($res*2)/30;
+            $user->setPaidVacation($paidVacation);
+            //on enregistre les modifications
             $em->persist($user);
             $em->flush();
 
@@ -41,6 +49,7 @@ class AdminController extends Controller
             return $this->redirectToRoute('ilaneo_conge_connexion');
         }
 
+        //traitement si méthode get
         return $this->render('@ILANEOConge/Admin/ajoutEmp.html.twig',array('form'=>$form->createView()));
     }
 
