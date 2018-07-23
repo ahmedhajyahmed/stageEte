@@ -26,15 +26,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class EmployeController extends Controller 
 {
-<<<<<<< HEAD
-    
-    /*public function verifLoginAction()
-    {
 
-        return $this->redirectToRoute('ilaneo_conge_connexion');
-    }*/
-=======
->>>>>>> e16a18ed9cafd0e11206a38c3a691a7259af36fe
 
     //page d'accueim
     public function indexAction()
@@ -212,7 +204,7 @@ class EmployeController extends Controller
         return $this->render('@ILANEOConge/Employe/AuthorizationVacation.html.twig',array('form'=>$formView,'user'=>$user));
     }
 
-<<<<<<< HEAD
+
     public function uploadAction(UploadedFile $file)
     {
         $fileName = md5(uniqid()).'.'.$file->guessExtension();
@@ -253,8 +245,7 @@ class EmployeController extends Controller
         $entity->setsupportiongDoc($fileName);
     } 
 
-    
-=======
+
 
     //page mot de passe oublié
     public function resetPasswordAction(Request $request)
@@ -322,5 +313,4 @@ class EmployeController extends Controller
         return $this->render('@ILANEOConge/employe/myRequests.html.twig');
     }
 
->>>>>>> e16a18ed9cafd0e11206a38c3a691a7259af36fe
 }
