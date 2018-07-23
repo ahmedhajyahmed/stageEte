@@ -21,11 +21,8 @@ class AuthorizationVacationType extends AbstractType
         $builder
         ->add('startDate', DateTimeType::class,array('widget' => 'single_text',))
         ->add('endDate', DateTimeType::class,array('widget' => 'single_text',))
-        
         ->add('supportingDoc',  FileType::class, array('label' => 'fichier(PDF)'))
         ->add('pattern', TextareaType::class)
-        ->add('typeVacation', TextType::class,array())
-        ->add('submit', SubmitType::class)
         ->getForm();
     }/**
      * {@inheritdoc}
