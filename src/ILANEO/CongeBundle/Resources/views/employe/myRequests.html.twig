@@ -37,10 +37,31 @@
                             </div>
                             <div class="m-portlet__body">
                                 <div id="m_calendar"></div>
+                                <script>
+                                    $(document).ready(function() {
+                                var calendar = $('#calendar').fullCalendar({
+                                defaultView: 'agendaWeek',
+                                 header:{
+                                    right:'ahmed'
+                                 },
+                                events: {
+                                url: 'json-events-feed.php',
+                                type: 'POST', // Send post data
+                                error: function() {
+                                alert('There was an error while fetching events.');
+                                }
+                                }
+                                });
+                                });
+                                </script>
                             </div>
                         </div>
                         <!--end::Portlet-->
                     </div>
                 </div>
             </div>
+{% endblock %}
+{% block script %}
+    {{ parent() }}
+    <script src="{{ asset('js/myCalandar.js') }}" type="text/javascript"></script>
 {% endblock %}
