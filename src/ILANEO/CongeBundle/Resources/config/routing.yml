@@ -65,3 +65,9 @@ ilaneo_conge_myRequests:
     path: /user/myRequests
     defaults: {_controller: ILANEOCongeBundle:Employe:myRequests}
 
+ilaneo_conge_calculateDate:
+    path: /user/claculateDate
+    defaults: {_controller: ILANEOCongeBundle:Employe:calculateDate}
+    options:
+        expose: true
+

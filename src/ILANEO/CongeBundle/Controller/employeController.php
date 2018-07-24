@@ -17,6 +17,7 @@ use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -315,7 +316,7 @@ class EmployeController extends Controller
 
             //on prépare le message à envoyé
             $message = (new \Swift_Message('Mot de passe oublié'))
-                ->setFrom('hajyahmedahmed@gmail.com')
+                ->setFrom('xxx@gmai.com')
                 ->setTo($email)
                 ->setBody(
                     $this->renderView(
@@ -340,7 +341,38 @@ class EmployeController extends Controller
     //page mes demandes
     public function myRequestsAction()
     {
+
+        /*$eventsloaded = $this->container->get('calendarbundle.serviceloadcalendar')->loadCalendar();
+        $responseData = [];
+        foreach ($eventsloaded as $i => $event) {
+            $responseData[$i] = $event->toArray();
+        }
+
+        $eventt= new JsonResponse($responseData);
+        dump($eventt);die();*/
+
         return $this->render('@ILANEOConge/employe/myRequests.html.twig');
     }
 
+    public function calculateDateAction()
+    {
+        dump("ahmedAction");die();
+        $em = $this->getDoctrine()->getManager();
+
+        $repository = $em->getRepository('ILANEOCongeBundle:AskVacation');
+        $evenements=$repository->findAll();
+        $event = array();
+        foreach ($evenements as $evenement){
+            $event[] =array(
+                'id'=> $evenement->getId(),
+                'title' => $evenement->getTypeVacation(),
+                'start' => $evenement->getStartDate(),
+                'end' => $evenement->getEndDate()
+            )
+            ;
+        }
+        $events = new JsonResponse($event);
+
+        return $events ;
+    }
 }
