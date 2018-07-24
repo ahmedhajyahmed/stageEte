@@ -73,7 +73,7 @@ class AskVacation
     private $typeVacation;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AskVacation")
+     * @ORM\ManyToOne(targetEntity="user")
      */
     private $user;
     

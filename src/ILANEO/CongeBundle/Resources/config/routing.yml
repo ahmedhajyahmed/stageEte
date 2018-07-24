@@ -9,7 +9,7 @@ ilaneo_conge_connexion:
 
 # page demander congé
 ilaneo_conge_demandeConge:
-    path:     /ask
+    path:    /admin/ask
     defaults: { _controller: ILANEOCongeBundle:Employe:ask }
 
 

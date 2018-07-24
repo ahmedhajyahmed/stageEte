@@ -91,7 +91,7 @@ class EmployeController extends Controller
         //on récupére le formulaire 
 
         $askVacation=new AskVacation();
-        $user=new user();
+        $user=$this->getUser();
         $askVacation->setTypeVacation("congé annuel");
          
        
@@ -113,7 +113,7 @@ class EmployeController extends Controller
              
              
       
-              $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
+              $request->getSession()->getFlashBag()->add('notice', 'Demande bien enregistrée.');
       
               return $this->redirectToRoute('ilaneo_conge_connexion');
            }
@@ -148,7 +148,7 @@ class EmployeController extends Controller
               $em->persist($askVacation);
               $em->flush();
       
-              $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
+              $request->getSession()->getFlashBag()->add('notice', 'Demande bien enregistrée.');
       
               return $this->redirectToRoute('ilaneo_conge_connexion');
             }
@@ -183,7 +183,7 @@ class EmployeController extends Controller
               $em->persist($askVacation);
               $em->flush();
       
-              $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
+              $request->getSession()->getFlashBag()->add('notice', 'Demande bien enregistrée.');
       
               return $this->redirectToRoute('ilaneo_conge_connexion');
             }
@@ -207,8 +207,7 @@ class EmployeController extends Controller
         $user=$this->getUser();
         $askVacation=new AskVacation();
         
-        //$id=$user->getId();
-        //$askVacation->setUser_id($id);
+        $askVacation->setUser($user);
         
         $askVacation->setTypeVacation("congé exceptionnel");
 
@@ -228,7 +227,7 @@ class EmployeController extends Controller
               $em->persist($askVacation);
               $em->flush();
       
-              $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
+              $request->getSession()->getFlashBag()->add('notice', 'Demande bien enregistrée.');
       
               return $this->redirectToRoute('ilaneo_conge_connexion');
             }
@@ -266,7 +265,7 @@ class EmployeController extends Controller
               $em->persist($askVacation);
               $em->flush();
       
-              $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
+              $request->getSession()->getFlashBag()->add('notice', 'Demande bien enregistrée.');
       
               return $this->redirectToRoute('ilaneo_conge_connexion');
             }
@@ -277,49 +276,6 @@ class EmployeController extends Controller
         $formView = $form->createView();
         return $this->render('@ILANEOConge/Employe/AuthorizationVacation.html.twig',array('form'=>$formView,'user'=>$user));
     }
-
-
-    public function uploadAction(UploadedFile $file)
-    {
-        $fileName = md5(uniqid()).'.'.$file->guessExtension();
-
-        $file->move($this->getTargetDir(), $fileName);
-
-        return $fileName;
-    }
-
-    public function prePersistAction(LifecycleEventArgs $args)
-    {
-        $entity = $args->getEntity();
-
-        $this->uploadFile($entity);
-    }
-
-    public function preUpdateAction(PreUpdateEventArgs $args)
-    {
-        $entity = $args->getEntity();
-
-        $this->uploadFile($entity);
-    }
-
-    private function uploadFileAction($entity)
-    {
-        if (!$entity instanceof AskVacation) 
-        {
-            return;
-        }
-
-        $file = $entity->getsupportingDoc();
-
-        if (!$file instanceof UploadedFile) {
-            return;
-        }
-
-        $fileName = $this->uploader->upload($file);
-        $entity->setsupportingDoc($fileName);
-    } 
-
-
 
     //page mot de passe oublié
     public function resetPasswordAction(Request $request)
