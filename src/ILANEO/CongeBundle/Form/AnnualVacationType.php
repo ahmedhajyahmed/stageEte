@@ -21,7 +21,7 @@ class AnnualVacationType extends AbstractType
         ->add('startDate', DateTimeType::class, array('widget' => 'single_text',))
         ->add('endDate', DateTimeType::class,array('widget' => 'single_text',))
         ->add('pattern', TextareaType::class)
-        ->add('submit', SubmitType::class)
+        //->add('submit', SubmitType::class)
         ->getForm();
    
     }/**

@@ -6,6 +6,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -20,8 +21,7 @@ class SickVacationType extends AbstractType
         $builder
         ->add('startDate', DateTimeType::class,array('widget' => 'single_text',))
         ->add('endDate', DateTimeType::class,array('widget' => 'single_text',))
-       
-        ->add('supportingDoc', TextareaType::class)
+        ->add('supportingDoc',  FileType::class, array('label' => 'fichier(PDF)'))
         ->add('pattern', TextareaType::class)
         ->add('submit', SubmitType::class);
         

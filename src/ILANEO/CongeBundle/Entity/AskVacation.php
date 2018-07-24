@@ -48,7 +48,7 @@ class AskVacation
      *
      * @ORM\Column(name="state", type="string", length=20)
      */
-    private $etat;
+    private $state;
 
     /**
      * @var string|null
@@ -59,7 +59,7 @@ class AskVacation
 
     /**
      * @var string|null
-     * @Assert\NotBlank(message="Ajouter une fichier pdf")
+     *
      * @Assert\File(mimeTypes={ "application/pdf" })
      * @ORM\Column(name="supportingDoc", type="text", nullable=true)
      */
@@ -80,7 +80,7 @@ class AskVacation
     public function __construct()
     {
         $this->askDate = new \DateTime('now');
-        $this->etat= "demande en cours d'étude";
+        $this->state= "demande en cours d'étude";
     }
 
     public function getUser()

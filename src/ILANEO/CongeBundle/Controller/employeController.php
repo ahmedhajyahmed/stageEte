@@ -93,20 +93,32 @@ class EmployeController extends Controller
 
         $askVacation=new AskVacation();
         $user=new user();
+        $askVacation->setTypeVacation("congé annuel");
          
        
         $form = $this->createform(AnnualVacationType::class , $askVacation );
        
-        $form->handleRequest($request);
+       
 
-        if ($form->isSubmitted() && $form->isValid())
+        if ($request->isMethod('POST')) 
         {
-
-            $askVacation = $form->getData();
-
-            return $this->redirectToRoute('ilaneo_conge_connexion');
             
-        }    
+            $form->handleRequest($request);
+      
+            if ($form->isValid()) 
+            {
+              
+              $em = $this->getDoctrine()->getManager();
+              $em->persist($askVacation);
+              $em->flush();
+             
+             
+      
+              $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
+      
+              return $this->redirectToRoute('ilaneo_conge_connexion');
+           }
+        }   
         //on génére le HTML du formulaire créé
         
         $formView = $form->createView();
@@ -116,30 +128,71 @@ class EmployeController extends Controller
         return $this->render('@ILANEOConge/Employe/AnnualVacation.html.twig',array('form'=>$formView, 'user' =>$user,));
     }
 
-    public function SickVacationAction()
+    public function SickVacationAction(Request $request)
     {
         $user=$this->getUser();
         //on récupére le formulaire 
 
         $askVacation=new AskVacation();
+        $askVacation->setTypeVacation("congé de maladie");
+
         $form = $this->createform(SickVacationType::class , $askVacation );
+
+        if ($request->isMethod('POST')) 
+        {   
+            $form->handleRequest($request);
+      
+            if ($form->isValid()) 
+            {
+              
+              $em = $this->getDoctrine()->getManager();
+              $em->persist($askVacation);
+              $em->flush();
+      
+              $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
+      
+              return $this->redirectToRoute('ilaneo_conge_connexion');
+            }
+
+       
+        }    
             
         //on génére le HTML du formulaire créé
         
         $formView = $form->createView();
 
-        //on rend la vue
 
         return $this->render('@ILANEOConge/Employe/SickVacation.html.twig',array('form'=>$formView , 'user' =>$user,));
     }
 
-    public function UnpaidVacationAction()
+    public function UnpaidVacationAction(Request $request)
     {   
-        $user=$this->getUser();
-        //on récupére le formulaire 
-
+        $user=$this->getUser();  
         $askVacation=new AskVacation();
+        $askVacation->setTypeVacation("congé sans solde");
+
         $form = $this->createform(UnpaidVacationType::class , $askVacation );
+
+        if ($request->isMethod('POST')) 
+        {   
+            $form->handleRequest($request);
+      
+            if ($form->isValid()) 
+            {
+              
+              $em = $this->getDoctrine()->getManager();
+              $em->persist($askVacation);
+              $em->flush();
+      
+              $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
+      
+              return $this->redirectToRoute('ilaneo_conge_connexion');
+            }
+
+       
+        }    
+
+        
             
         //on génére le HTML du formulaire créé
         
@@ -150,14 +203,39 @@ class EmployeController extends Controller
         return $this->render('@ILANEOConge/Employe/UnpaidVacation.html.twig',array('form'=>$formView , 'user' =>$user,));
     }
 
-    public function ExceptionalVacationAction()
+    public function ExceptionalVacationAction(Request $request)
     {   
         $user=$this->getUser();
-        //on récupére le formulaire 
-
         $askVacation=new AskVacation();
+        
+        //$id=$user->getId();
+        //$askVacation->setUser_id($id);
+        
+        $askVacation->setTypeVacation("congé exceptionnel");
+
+        //on récupére le formulaire 
+        
+       
         $form = $this->createform(ExceptionalVacationType::class , $askVacation );
-            
+
+        if ($request->isMethod('POST')) 
+        {   
+            $form->handleRequest($request);
+      
+            if ($form->isValid()) 
+            {
+              
+              $em = $this->getDoctrine()->getManager();
+              $em->persist($askVacation);
+              $em->flush();
+      
+              $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
+      
+              return $this->redirectToRoute('ilaneo_conge_connexion');
+            }
+
+       
+        }    
         //on génére le HTML du formulaire créé
         
         $formView = $form->createView();
@@ -173,15 +251,13 @@ class EmployeController extends Controller
         
         //on récupére le formulaire 
         $askVacation=new AskVacation();
-        
+        $askVacation->setTypeVacation("Authorisation d'absence");
         $form = $this->createform(AuthorizationVacationType::class , $askVacation );
             
         //on génére le HTML du formulaire créé
-        
-
+    
         if ($request->isMethod('POST')) 
-        {
-            
+        {   
             $form->handleRequest($request);
       
             if ($form->isValid()) 
@@ -241,7 +317,7 @@ class EmployeController extends Controller
         }
 
         $fileName = $this->uploader->upload($file);
-        $entity->setsupportiongDoc($fileName);
+        $entity->setsupportingDoc($fileName);
     } 
 
 
