@@ -19,7 +19,7 @@ class AppKernel extends Kernel
             #new AppBundle\AppBundle(),
             new ILANEO\CongeBundle\ILANEOCongeBundle(),
             new FOS\UserBundle\FOSUserBundle(),
-            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
+            //new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
            // new ADesigns\CalendarBundle\ADesignsCalendarBundle(),
         ];
 
