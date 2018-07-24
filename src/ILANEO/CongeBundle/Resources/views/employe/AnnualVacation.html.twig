@@ -1,7 +1,7 @@
 
 {%extends "::Layout.html.twig" %}
 
-{% block title %}congé annuel{% endblock %}
+{% block title %}Congé Annuel{% endblock %}
 
 {% block body %}
 
@@ -16,14 +16,16 @@
                                                         <i class="la la-gear"></i>
                                                     </span>
                     <h3 class="m-portlet__head-text">
+                    <strong>
                         Congé Annuel
+                    </strong>    
                     </h3>
                 </div>
             </div>
         </div>
 
     
-
+        <p class="text-align:left style"margin: 10px 10px 10px 10px">
             <div class="m-portlet__body">
                 <div class="m-form__section m-form__section--first">
                     <div class="m-form__heading">
@@ -50,17 +52,25 @@
                     </div>
                 </div>
             </div>
+        </p>
 
-             <div class="m-portlet__body">
+         <p class="text-align:left
+            <div class="m-portlet__body">
                 <div class="m-form__section m-form__section--first">
-                    <div class="m-form__heading" id="nomberOfDays" style="visibility:hidden">
-                        <h3 class="m-form__heading-title">
-                            Nombre de jours demandés :
-                        </h3>
-                    </div>
+                        <div class="m-form__heading" id="nomberOfDays" style="visibility:visible">
+                            <h3 class="m-form__heading-title">
+                                Nombre de jours demandés :
+                            </h3>
+                        </div>
                 </div>       
-                
+					
+				<div class="col-lg-5">
+					<input type="text" name="diff" id="diff" value="" class="form-control m-input col-lg-2"/>
+				</div>
+			</div>            
+        </p>  
 
+         <p class="text-align:left style"margin: 10px 10px 10px 10px">
             <div class="m-portlet__body">
                 <div class="m-form__section m-form__section--first">
                     <div class="m-form__heading">
@@ -69,10 +79,14 @@
                         </h3>
                     </div>
                 </div>
+                <div class="col-lg-5">
+					<input type="text" name="diff" id="diff" value="{{user.paidVacation}}" class="form-control m-input col-lg-2"/>
+				</div>
                         
-                        {{user.paidVacation}}
             </div>
+        </p>
 
+         <p class="text-align:left style"margin: 10px 10px 10px 10px">
             <div class="m-portlet__body">
                 <div class="m-form__section m-form__section--first">
                     <div class="m-form__heading">
@@ -90,7 +104,9 @@
                      </div>
                 </div>
             </div> 
-             <input type="submit" value="submit" style="margin-bottom:100px"/>   
+        </p>
+
+        <input type="submit" value="submit" style="margin-bottom:100px"/>   
                      
     {{ form_end(form) }}
 

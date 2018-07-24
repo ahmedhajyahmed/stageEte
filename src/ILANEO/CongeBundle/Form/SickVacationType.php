@@ -21,9 +21,9 @@ class SickVacationType extends AbstractType
         $builder
         ->add('startDate', DateTimeType::class,array('widget' => 'single_text',))
         ->add('endDate', DateTimeType::class,array('widget' => 'single_text',))
-        ->add('supportingDoc',  FileType::class, array('label' => 'fichier(PDF)'))
-        ->add('pattern', TextareaType::class)
-        ->add('submit', SubmitType::class);
+        ->add('supportingDoc',  FileType::class, array('label' => 'fichier(PDF)','required'   => true))
+        ->add('pattern', TextareaType::class,array('required'   => false))
+        ->getForm();
         
     }/**
      * {@inheritdoc}
