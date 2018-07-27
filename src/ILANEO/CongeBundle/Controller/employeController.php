@@ -94,8 +94,8 @@ class EmployeController extends Controller
         $askVacation=new AskVacation();
         $user=$this->getUser();
         $askVacation->setTypeVacation("congé annuel");
-         
-       
+        $askVacation->setUser($user);
+        
         $form = $this->createform(AnnualVacationType::class , $askVacation );
        
        
@@ -107,14 +107,37 @@ class EmployeController extends Controller
       
             if ($form->isValid()) 
             {
-              
-              $em = $this->getDoctrine()->getManager();
+                  $em = $this->getDoctrine()->getManager();
               $em->persist($askVacation);
               $em->flush();
+              $request->getSession()->getFlashBag()->add('submit-notice', 'Votre demande de congé a bien été envoyée');
              
              
-      
-              $request->getSession()->getFlashBag()->add('notice', 'Demande bien enregistrée.');
+                
+             $pattern=$form["pattern"]->getData();
+             $askDate=$askVacation->getAskDate();
+             $startDate=$form["startDate"]->getData();
+             $endDate=$form["endDate"]->getData();
+
+             $userFirstname=$user->getUserFirstname();
+             $userLastname=$user->getUserLastname();
+
+              //on prépare le message à envoyé
+              $message = (new \Swift_Message('Demande de congé'))
+              ->setFrom($user->getEmail())
+              ->setTo('farah.attia24@gmail.com')
+              ->setBody(
+                 $this->renderView(
+                     '@ILANEOConge/annualVacationEmail.html.twig',
+                     array("askDate" => $askDate,"startDate" => $startDate,"endDate" => $endDate,
+                           "userFirstname" => $userFirstname,"userLastname" => $userLastname)
+                 ),
+                 'text/html')
+             ;
+
+              //on envoye le message
+              $this->get('mailer')->send($message);
+              $request->getSession()->getFlashBag()->add('submit-notice', 'Votre demande de congé a bien été envoyée');
       
               return $this->redirectToRoute('ilaneo_conge_connexion');
            }
@@ -131,11 +154,11 @@ class EmployeController extends Controller
     public function SickVacationAction(Request $request)
     {
         $user=$this->getUser();
-        //on récupére le formulaire 
-
         $askVacation=new AskVacation();
+        $askVacation->setUser($user);
         $askVacation->setTypeVacation("congé de maladie");
 
+        //on récupére le formulaire 
         $form = $this->createform(SickVacationType::class , $askVacation );
 
         if ($request->isMethod('POST')) 
@@ -148,14 +171,40 @@ class EmployeController extends Controller
               $em = $this->getDoctrine()->getManager();
               $em->persist($askVacation);
               $em->flush();
-      
-              $request->getSession()->getFlashBag()->add('notice', 'Demande bien enregistrée.');
+              $request->getSession();
+                
+              $pattern=$form["pattern"]->getData();
+              $supportingDoc=$form["supportingDoc"]->getData();
+              $askDate=$askVacation->getAskDate();
+              $startDate=$form["startDate"]->getData();
+              $endDate=$form["endDate"]->getData();
+
+              $userFirstname=$user->getUserFirstname();
+              $userLastname=$user->getUserLastname();
+
+              //on prépare le message à envoyé
+              $message = (new \Swift_Message('Demande de congé'))
+              ->setFrom($this->container->getParameter('mailer_user'))
+              ->setTo('farah.attia24@gmail.com')
+              ->setBody(
+                $this->renderView(
+                    '@ILANEOConge/sickVacationEmail.html.twig',
+                    array("pattern" => $pattern,"supportingDoc" => $supportingDoc,"askDate" => $askDate,
+                       "startDate" => $startDate,"endDate" => $endDate,"userFirstname" => $userFirstname,"userLastname" => $userLastname)
+                ),
+                'text/html')
+             ;
+             
+
+              //on envoye le message
+              $this->get('mailer')->send($message);
+              $request->getSession()->getFlashBag()->add('submit-notice', 'Votre demande de congé a bien été envoyée');
       
               return $this->redirectToRoute('ilaneo_conge_connexion');
             }
 
        
-        }    
+        }   
             
         //on génére le HTML du formulaire créé
         
@@ -170,6 +219,7 @@ class EmployeController extends Controller
         $user=$this->getUser();  
         $askVacation=new AskVacation();
         $askVacation->setTypeVacation("congé sans solde");
+        $askVacation->setUser($user);
 
         $form = $this->createform(UnpaidVacationType::class , $askVacation );
 
@@ -183,8 +233,33 @@ class EmployeController extends Controller
               $em = $this->getDoctrine()->getManager();
               $em->persist($askVacation);
               $em->flush();
-      
-              $request->getSession()->getFlashBag()->add('notice', 'Demande bien enregistrée.');
+              $request->getSession()->getFlashBag()->add('submit-notice', 'Votre demande de congé a bien été envoyée');
+              
+             $pattern=$form["pattern"]->getData();
+             $supportingDoc=$form["supportingDoc"]->getData();
+             $askDate=$askVacation->getAskDate();
+             $startDate=$form["startDate"]->getData();
+             $endDate=$form["endDate"]->getData();
+
+             $userFirstname=$user->getUserFirstname();
+             $userLastname=$user->getUserLastname();
+
+              //on prépare le message à envoyé
+              $message = (new \Swift_Message('Demande de congé'))
+              ->setFrom($user->getEmail())
+              ->setTo('farah.attia24@gmail.com')
+              ->setBody(
+                 $this->renderView(
+                     '@ILANEOConge/unpaidVacationEmail.html.twig',
+                     array("pattern" => $pattern,"supportingDoc" => $supportingDoc,"askDate" => $askDate,
+                        "startDate" => $startDate,"endDate" => $endDate,"userFirstname" => $userFirstname,"userLastname" => $userLastname)
+                 ),
+                 'text/html')
+             ;
+
+              //on envoye le message
+              $this->get('mailer')->send($message);
+              $request->getSession()->getFlashBag()->add('submit-notice', 'Votre demande de congé a bien été envoyée');
       
               return $this->redirectToRoute('ilaneo_conge_connexion');
             }
@@ -207,9 +282,7 @@ class EmployeController extends Controller
     {   
         $user=$this->getUser();
         $askVacation=new AskVacation();
-        
-        $askVacation->setUser($user);
-        
+        $askVacation->setUser($user);   
         $askVacation->setTypeVacation("congé exceptionnel");
 
         //on récupére le formulaire 
@@ -227,8 +300,34 @@ class EmployeController extends Controller
               $em = $this->getDoctrine()->getManager();
               $em->persist($askVacation);
               $em->flush();
-      
-              $request->getSession()->getFlashBag()->add('notice', 'Demande bien enregistrée.');
+              $request->getSession()->getFlashBag()->add('submit-notice', 'Votre demande de congé a bien été envoyée');
+                
+
+              $pattern=$form["pattern"]->getData();
+              $supportingDoc=$form["supportingDoc"]->getData();
+              $askDate=$askVacation->getAskDate();
+              $startDate=$form["startDate"]->getData();
+              $endDate=$form["endDate"]->getData();
+
+              $userFirstname=$user->getUserFirstname();
+              $userLastname=$user->getUserLastname();
+
+               //on prépare le message à envoyé
+               $message = (new \Swift_Message('Demande de congé'))
+               ->setFrom($user->getEmail())
+               ->setTo('farah.attia24@gmail.com')
+               ->setBody(
+                  $this->renderView(
+                      '@ILANEOConge/exceptionalVacationEmail.html.twig',
+                      array("pattern" => $pattern,"supportingDoc" => $supportingDoc,"askDate" => $askDate,
+                        "startDate" => $startDate,"endDate" => $endDate,"userFirstname" => $userFirstname,"userLastname" => $userLastname)
+                  ),
+                  'text/html')
+              ;
+
+                 //on envoye le message
+                 $this->get('mailer')->send($message);
+                 $request->getSession()->getFlashBag()->add('submit-notice', 'Votre demande de congé a bien été envoyée');
       
               return $this->redirectToRoute('ilaneo_conge_connexion');
             }
@@ -246,13 +345,15 @@ class EmployeController extends Controller
 
     public function AuthorizationVacationAction(Request $request)
     {
-        $user=$this->getUser();
-        
-        //on récupére le formulaire 
+        $user=$this->getUser(); 
         $askVacation=new AskVacation();
+        $askVacation->setUser($user);
         $askVacation->setTypeVacation("Authorisation d'absence");
+        //on récupére le formulaire
         $form = $this->createform(AuthorizationVacationType::class , $askVacation );
-            
+        
+        ;
+          
         //on génére le HTML du formulaire créé
     
         if ($request->isMethod('POST')) 
@@ -262,20 +363,49 @@ class EmployeController extends Controller
             if ($form->isValid()) 
             {
               
-              $em = $this->getDoctrine()->getManager();
-              $em->persist($askVacation);
-              $em->flush();
+                 $em = $this->getDoctrine()->getManager();
+                 $em->persist($askVacation);
+                 $em->flush();
+                 $request->getSession()->getFlashBag()->add('submit-notice', 'Votre demande de congé a bien été envoyée');
       
-              $request->getSession()->getFlashBag()->add('notice', 'Demande bien enregistrée.');
-      
+                 $pattern=$form["pattern"]->getData();
+                 $supportingDoc=$form["supportingDoc"]->getData();
+                 $askDate=$askVacation->getAskDate();
+                 $startDate=$form["startDate"]->getData();
+                 $endDate=$form["endDate"]->getData();
+
+                 $userFirstname=$user->getUserFirstname();
+                 $userLastname=$user->getUserLastname();
+
+                 //on prépare le message à envoyé
+                 $message = (new \Swift_Message('Demande de congé'))
+                 ->setFrom($user->getEmail())
+                 ->setTo('farah.attia24@gmail.com')
+                 ->setBody(
+                    $this->renderView(
+                        '@ILANEOConge/authorizationVacationEmail.html.twig',
+                        array('pattern' => $pattern,'supportingDoc' => $supportingDoc,'askDate' => $askDate,
+                        'startDate' => $startDate,'endDate' => $endDate,'userFirstname' => $userFirstname,'userLastname' => $userLastname)
+                    ),
+                    'text/html')
+                ;
+
+                 //on envoye le message
+                 $this->get('mailer')->send($message);
+                 $request->getSession()->getFlashBag()->add('submit-notice', 'Votre demande de congé a bien été envoyée');
+            
               return $this->redirectToRoute('ilaneo_conge_connexion');
+
             }
         }
-      
+       
         //on rend la vue
 
         $formView = $form->createView();
+
         return $this->render('@ILANEOConge/Employe/AuthorizationVacation.html.twig',array('form'=>$formView,'user'=>$user));
+    
+    
     }
 
     //page mot de passe oublié

@@ -110,19 +110,14 @@
                 </div>
             </div> 
             <div >
-             <input type="submit" value="Envoyer" style="margin-bottom:100px" class="btn btn-brand"/> 
+             <input type="submit" value="Envoyer" style="margin-bottom:100px" class="btn btn-brand"/>
+
+            
              
         </p>
                      
     {{ form_end(form) }}
 
-    {% block javascripts %}
-        <script
-            src="https://code.jquery.com/jquery-3.3.1.js"
-            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-                crossorigin="anonymous"></script>
-        <script type="text/javascript" src="{{ asset('assets/app/js/NomberOfAskDays.js')}}"></script>
-        <script type="text/javascript" src="{{ asset('assets/app/js/moment.min.js')}}"></script>
-    {% endblock %}
+    
 
 {% endblock %}
