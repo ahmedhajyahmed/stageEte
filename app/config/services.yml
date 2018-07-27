@@ -43,3 +43,15 @@ services:
         tags:
             - { name: form.type, alias: ilaneo_conge_changePassword }
 
+    ILANEOConge.file_uploader:
+        class: ILANEO\CongeBundle\FileUpload
+        arguments: ['%file_directory%']  
+      
+    ILANEOConge.doctrine_File_listener:
+        class: ILANEO\CongeBundle\EventListener\UploadFileListener
+        arguments: ['@ILANEOConge.file_uploader']
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preUpdate }
+
+
