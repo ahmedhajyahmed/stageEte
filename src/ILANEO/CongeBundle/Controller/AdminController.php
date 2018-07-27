@@ -8,7 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-
+use ILANEO\CongeBundle\form\RechercheType;
 class AdminController extends Controller
 {
 
@@ -52,5 +52,58 @@ class AdminController extends Controller
         //traitement si méthode get
         return $this->render('@ILANEOConge/Admin/ajoutEmp.html.twig',array('form'=>$form->createView()));
     }
+
+
+
+
+   public function listeEmployesAction (Request  $request)
+    {
+
+       $userdets = $this->getDoctrine()->getRepository('ILANEOCongeBundle:User')->findAll();
+       return $this->render('@ILANEOConge/Admin/listeEmployes.html.twig', array('viewUserdets'=>$userdets));
+    }
+/*
+public public function rechercheAction()
+{
+    $form=$this->createForm(new RechercheType());
+   return $this->render('@ILANEOConge/Admin/recherche.html.twig', array('form'=>$form->createView()));
+
+}
+
+public function rechercheTraitementAction  ()
+{ 
+$form=$this->createForm(new RechercheType());
+if($this->get('request')->getMethod()=='POST')
+{
+    $form->bind($this->get('request'));
+    $em= $this->getDoctrine()->getManager();
+    $users= $em->getRepository('ILANEOCongeBundle:User')->recherche( $form{'recherchee'}-getData());
+}
+    return $this->render('@ILANEOConge/Admin/listeEmployes.html.twig', array('users'=>$users));
+}
+
+/*public function rechercheAction  (Request  $request)
+{
+
+$em=$this->getDoctrine()->getManager();
+$motcle=$request->get('motcle');
+$repostery=$em->getRepository('ILANEOCongeBundle:user')
+
+$query=$repository->createQueryBuilder('u')
+->where('u.userFirstname = : userFirstname')
+->setParameter('userFirstname',$motcle)
+->orderBy('u.userFirstname','ASC')
+->getQuery();
+
+$listeEmployes= $query->getResult();
+$entities = $this->getR('knp_paginator')->paginate(
+    $listeEmployes,
+    $request->query->get('page',1),
+    6);
+
+return $this->redirectToRoute('ilaneo_conge_connexion');
+}*/
+
+
 
 }

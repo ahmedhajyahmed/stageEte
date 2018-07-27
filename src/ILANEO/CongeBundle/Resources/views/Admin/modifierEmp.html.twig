@@ -1,0 +1,103 @@
+{% extends '::layout.html.twig' %}
+
+{% block title  %}
+    changer profile {{ parent() }}
+ {% endblock %}
+
+{% block body %}
+    <div class="m-portlet"    >
+        <div class="m-portlet__head">
+            <div class="m-portlet__head-caption">
+                <div class="m-portlet__head-title">
+                                                <span class="m-portlet__head-icon m--hide">
+                                                    <i class="la la-gear"></i>
+                                                </span>
+                    <h3 class="m-portlet__head-text">
+                        Changer profile
+                    </h3>
+                </div>
+            </div>
+        </div>
+        <!--begin::Form-->
+        {{ form_start(form, {  'attr': { 'class': 'm-form','style':'margin-left:30px' } }) }}
+            <div class="form-group m-form__group row">
+                {{ form_label(form.familySituation, "Etat civil", {'label_attr': {'class': 'col-3 col-form-label'}}) }}
+
+                {{ form_errors(form.familySituation) }}
+                <div class="col-9">
+                    {% for family  in form.familySituation %}
+                        {{ form_widget(family, {'attr': {'class': 'm-radio-inline'}}) }}
+                        <label class="col-lg-2 col-form-label" style="padding-right: 130px">
+                            {{ form_label(family) }}
+                        </label>
+                        {{ form_errors(family) }}
+                    {% endfor %}
+
+                </div>
+            </div>
+            <div class="form-group m-form__group row">
+                {{ form_label(form.children, "Nombre d'enfant", {'label_attr': {'class': 'col-3 col-form-label'}}) }}
+
+                {{ form_errors(form.children) }}
+                <div class="col-9">
+                    {{ form_widget(form.children, {'attr': {'class': 'form-control m-input','placeholder':'user.children'}}) }}                                 </span>
+                </div>
+            </div>
+            <div class="form-group m-form__group row">
+                {{ form_label(form.phone, "Télephone", {'label_attr': {'class': 'col-3 col-form-label'}}) }}
+
+                {{ form_errors(form.phone) }}
+                <div class="col-9">
+                    {{ form_widget(form.phone, {'attr': {'class': 'form-control m-input','placeholder':'user.phone '}}) }}                                  </span>
+                </div>
+            </div>
+            <div class="form-group m-form__group row">
+                {{ form_label(form.email, "Email", {'label_attr': {'class': 'col-3 col-form-label'}}) }}
+
+                {{ form_errors(form.email) }}
+                <div class="col-9">
+                    {{ form_widget(form.email, {'attr': {'class': 'form-control m-input','placeholder':'user.email '}}) }}                                  </span>
+                </div>
+            </div>
+            <div class="form-group m-form__group row">
+                {{ form_label(form.post, "Poste", {'label_attr': {'class': 'col-3 col-form-label'}}) }}
+
+                {{ form_errors(form.post) }}
+                <div class="col-9">
+                    {{ form_widget(form.post, {'attr': {'class': 'form-control m-input','placeholder':'user.post '}}) }}                                    </span>
+                </div>
+            </div>
+            <div class="form-group m-form__group row">
+                {{ form_label(form.status, "Statut", {'label_attr': {'class': 'col-3 col-form-label'}}) }}
+
+                {{ form_errors(form.status) }}
+                <div class="col-9">
+                    {{ form_widget(form.status, {'attr': {'class': 'form-control m-input','placeholder':'user.status '}}) }}                                    </span>
+                </div>
+            </div>
+            <div class="form-group m-form__group row">
+                {{ form_label(form.bankAccount, "N° compte bancaire", {'label_attr': {'class': 'col-3 col-form-label'}}) }}
+
+                {{ form_errors(form.bankAccount) }}
+                <div class="col-9">
+                    {{ form_widget(form.bankAccount, {'attr': {'class': 'form-control m-input','placeholder':'user.bankAccount '}}) }}                                  </span>
+                </div>
+            </div>
+        </div>
+        <div class="m-form__actions m-form__actions--solid" style="padding-bottom: 50px">
+            <div class="row">
+                <div class="col-3"></div>
+                <div class="col-9">
+                    <button type="submit" class="btn btn-brand">
+                        Enregistrer
+                    </button>
+                    <a class="btn btn-brand" href="{{ path('ilaneo_conge_connexion') }}" role="button">Retour</a>
+
+                </div>
+            </div>
+        </div>
+        {{ form_end(form) }}
+        <!--end::Form-->
+    </div>
+    <!--end::Portlet-->
+{% endblock %}
