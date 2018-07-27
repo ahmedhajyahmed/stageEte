@@ -1,0 +1,22 @@
+{% extends "::layout.html.twig" %}
+
+{% block title  %}
+    Liste des employés {{ parent() }}
+ {% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('assets/css/radio.css') }}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block body %}
+ 
+<form action={{path('ilaneo_recherche_employes')}} method="POST" style="margin:30px" class="form-inline mt-2 mt-md-0"  >
+         {{form_widget(form.recherche)}}
+          <button class="btn btn-brand" type="submit" >Search</button>
+          {{form_widget(form)}}
+        </form>
+
+{% endblock %}

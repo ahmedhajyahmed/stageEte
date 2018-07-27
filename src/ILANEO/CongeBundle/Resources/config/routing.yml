@@ -71,3 +71,18 @@ ilaneo_conge_calculateDate:
     options:
         expose: true
 
+
+
+
+
+ilaneo_liste_employes:
+    path: /admin/listeEmployes
+    defaults: {_controller: ILANEOCongeBundle:Admin:listeEmployes}
+
+ilaneo_recherche_employes:
+    path: /admin/recherche
+    defaults: {_controller: ILANEOCongeBundle:Admin:listeEmployes}
+
+ilaneo_modifier_employe:
+    path: /admin/recherche
+    defaults: {_controller: ILANEOCongeBundle:Admin:editEmp}
