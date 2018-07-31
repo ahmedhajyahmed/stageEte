@@ -239,7 +239,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                         </a>
                                     </li>
                                     <li class="m-menu__item  m-menu__item--submenu m-menu__item--rel "  >
-                                        <a  href="#" class="m-menu__link ">
+                                        <a  href="{{path('ilaneo_conge_demandeConge')}}" class="m-menu__link ">
                                             <span class="m-menu__item-here"></span>
                                             <span class="m-menu__link-text">
                                                             Demander Congé
@@ -332,7 +332,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                         </a>
                                     </li>
                                     <li class="m-menu__item  m-menu__item--submenu m-menu__item--rel "  >
-                                        <a  href="#" class="m-menu__link ">
+                                        <a  href="{{ path('ilaneo_conge_demandeConge' )}}" class="m-menu__link ">
                                             <span class="m-menu__item-here"></span>
                                             <span class="m-menu__link-text">
 													Demander Congé
@@ -481,7 +481,20 @@ License: You must have a valid license purchased only from themeforest(the above
 <!--end::Page Snippets -->
  {# <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
 <script src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script> #}
+
+ {% block javascripts %}
+        <script
+            src="https://code.jquery.com/jquery-3.3.1.js"
+            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+                crossorigin="anonymous"></script>
+
+        <script type="text/javascript" src="{{ asset('assets/app/js/moment.min.js')}}"></script>        
+        <script type="text/javascript" src="{{ asset('assets/app/js/NomberOfAskDays.js')}}"></script>
+        
+    {% endblock %}
+    
 {% endblock %}
 </body>
 <!-- end::Body -->
+ 
 </html>

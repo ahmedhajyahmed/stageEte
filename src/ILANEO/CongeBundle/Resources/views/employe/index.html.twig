@@ -18,6 +18,13 @@
     <div class="m-portlet__body">
         <!--begin::Section-->
         <div class="m-section">
+
+             {% for message in app.flashes('submit-notice') %}
+                 <div class="alert alert-notice"  style:{color:#8A2BE2;}>
+                    {{ message }}
+                 </div>
+             {% endfor %}
+
             <div class="m-section__content">
                 <table class="table table-striped m-table">
                     <tbody>

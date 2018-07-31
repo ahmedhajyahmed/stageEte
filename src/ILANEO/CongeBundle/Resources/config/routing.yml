@@ -30,23 +30,23 @@ ilaneo_conge_ajoutEmp:
 
 
 ilaneo_conge_annualVacation:
-    path:   /annualVacation
+    path:  /admin/annualVacation
     defaults: { _controller: ILANEOCongeBundle:Employe:AnnualVacation}
 
 ilaneo_conge_SickVacation:
-    path:   /SickVacation
+    path:   /admin/SickVacation
     defaults: { _controller: ILANEOCongeBundle:Employe:SickVacation}
 
 ilaneo_conge_UnpaidVacation:
-    path:   /UnpaidVacation
+    path:   /admin/UnpaidVacation
     defaults: { _controller: ILANEOCongeBundle:Employe:UnpaidVacation}
 
 ilaneo_conge_ExceptionalVacation:
-    path:   /ExceptionalVacation
+    path:   /admin/ExceptionalVacation
     defaults: { _controller: ILANEOCongeBundle:Employe:ExceptionalVacation}
     
 ilaneo_conge_AuthorizationVacation:
-    path:   /AuthorizationVacation
+    path:   /admin/AuthorizationVacation
     defaults: { _controller: ILANEOCongeBundle:Employe:AuthorizationVacation}
 
 
