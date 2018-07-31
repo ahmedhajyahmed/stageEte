@@ -12,38 +12,78 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% block body %}
-{%render(controller(CongeBundle:AdminController:recherche))%}
- <form style="margin:30px" class="form-inline mt-2 mt-md-0"  >
-          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-          <button class="btn btn-brand" type="submit" >Search</button>
+<div class="m-portlet__head">
+        <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+                                                    <span class="m-portlet__head-icon m--hide">
+                                                        <i class="la la-gear"></i>
+                                                    </span>
+                <h3 class="m-portlet__head-text" >
+                   Liste des employés
+                </h3>
+   
+        
+            
+       
+    
+            </div>
+        </div>
+    </div>
+<div class="m-section" style="padding:0px">
+            <div class="m-section__content">
+                <table class="table table-striped m-table">
+                    <tbody>
+                    <tr>
+  <form  class="form-inline mt-2 mt-md-0">
+            <td> <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search"></td>
+          <td> <button   class="btn btn-brand" type="submit" >Search</button></td>
         </form>
-   <div class="row" style="padding:20px;font-size:20px;">
-        <div class="col-2" >Nom</div>
-        <div class="col-1" >Prénom</div>
-        <div class="col-2" >Statut</div>
-        <div class="col-2" >Post</div>
-         <div class="col-2">Tél</div>
-        <div class="col-3">Action</div>
-      
-     </div>
-  {% for key in viewUserdets %}
- <div  style="padding:20px">
-     <div class="row">
-        <div class="col-2">{{key.userLastname}}</div>
-        <div class="col-1">{{key.userFirstname}}</div>
-        <div class="col-2">{{key.status}}</div>
-         <div class="col-2">{{key.post}}</div>
-        <div class="col-2">{{key.phone}}</div>
-           <div class="col-3">  <button class="btn btn-brand" type="submit" action={{path('ilaneo_modifier_employe')}} >Modifier</button>
-             <button class="btn btn-brand" type="submit">Bulletin de paie</button>
-           </div>
-     </div>
-  
- </div> 
-  
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+<div class="m-section" style="padding:20px;margin:20px">
+            <div class="m-section__content">
+                <table class="table table-striped m-table">
+                    <tbody>
+                    <tr>
+                       <th> Nom </th>
+                       <th> Prénom</th>
+                       <th>Statut </th>
+                       <th>Post </th>
+                       <th>Tél </th>
+                       <th>Date de recrutement </th>
+                       <th>Action </th>
+                    </tr>
+ {% for key in viewUserdets %}
+                  <tr>
+                  <td>  {{key.userLastname}}   </td>
+                  <td>  {{key.userFirstname}}  </td>
+                  <td>  {{key.status}}  </td>
+                  <td>  {{key.post}}   </td>
+                  <td>  {{key.phone}}   </td>
+                  <td>    </td>
+                  <td>  <a class="btn btn-brand" href="{{ path('ilaneo_modifier_employe', { 'id': key.id }) }}" role="button">Modifier</a>
+             <button class="btn btn-brand" type="submit">Bulletin de paie</button>    </td>
+                  
+                  </tr>
+                   {%endfor%}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+
+ 
    
    
    
- {%endfor%}
+ 
+
+
+
 
 {% endblock %}

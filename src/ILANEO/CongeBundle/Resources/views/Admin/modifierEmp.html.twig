@@ -1,7 +1,7 @@
 {% extends '::layout.html.twig' %}
 
 {% block title  %}
-    changer profile {{ parent() }}
+    modifier employé {{ parent() }}
  {% endblock %}
 
 {% block body %}
@@ -13,7 +13,7 @@
                                                     <i class="la la-gear"></i>
                                                 </span>
                     <h3 class="m-portlet__head-text">
-                        Changer profile
+                        Modifier employé
                     </h3>
                 </div>
             </div>
@@ -88,10 +88,10 @@
             <div class="row">
                 <div class="col-3"></div>
                 <div class="col-9">
-                    <button type="submit" class="btn btn-brand">
+                    <button type="submit" class="btn btn-brand" }}>
                         Enregistrer
                     </button>
-                    <a class="btn btn-brand" href="{{ path('ilaneo_conge_connexion') }}" role="button">Retour</a>
+                    <a class="btn btn-brand" href="{{ path('ilaneo_liste_employes') }}" role="button">Retour</a>
 
                 </div>
             </div>
